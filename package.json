@@ -1,0 +1,20 @@
+{
+  "name": "common-library",
+  "version": "0.1.0",
+  "description": "This is service for people who wants to free exchange books",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://SSharyk@bitbucket.org/SSharyk/common-library.git"
+  },
+  "keywords": [
+    "library",
+    "client-service"
+  ],
+  "author": "SSharyk",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/SSharyk/common-library#readme"
+}
