@@ -1,6 +1,6 @@
 {
   "name": "common-library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This is service for people who wants to free exchange books",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,14 @@
   ],
   "author": "SSharyk",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/SSharyk/common-library#readme"
+  "homepage": "https://bitbucket.org/SSharyk/common-library#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "mongojs": "^2.4.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
+  }
 }
