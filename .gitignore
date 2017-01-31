@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+# MongoDB locks
+data/*.lock
+
 # Runtime data
 pids
 *.pid

@@ -1,6 +1,6 @@
 {
   "name": "common-library",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "This is service for people who wants to free exchange books",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "ejs": "^2.5.5",
     "express": "^4.14.0",
     "mongojs": "^2.4.0",
+    "mongoose": "^4.8.0",
     "morgan": "^1.7.0",
     "path": "^0.12.7"
   }
