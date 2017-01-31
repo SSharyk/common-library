@@ -10,7 +10,7 @@ var commentSchema = new Schema({
 	parentId: {
 		type: Schema.ObjectId,
 		required: false
-	}
+	},
 
 	text: {
 		type: String,
