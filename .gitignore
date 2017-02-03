@@ -5,6 +5,7 @@ npm-debug.log*
 
 # MongoDB locks
 data/*.lock
+data/libraryDB.*
 
 # Runtime data
 pids
