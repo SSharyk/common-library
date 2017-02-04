@@ -6,10 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-// constants
-let HOST = 'localhost';
-let PORT = 4200;
-let DATABASE = 'mongodb://localhost:27017/libraryDB';
+var config = require('./config');
 
 // routes
 var index = require('./routes/index');
@@ -40,8 +37,8 @@ app.use('/book/', books);
 // });
 
 // connecting the server
-var server = app.listen(PORT, function() {
-	var host = HOST;
+var server = app.listen(config.PORT, function() {
+	var host = config.HOST;
 	var port = server.address().port;
 	console.log('App listening at http://%s:%s', host, port);
 });
