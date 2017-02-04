@@ -44,7 +44,7 @@ var server = app.listen(config.PORT, function() {
 });
 
 // connecting the database
-mongoose.connect(DATABASE);
+mongoose.connect(config.DATABASE);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
