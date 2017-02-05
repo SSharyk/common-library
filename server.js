@@ -11,6 +11,7 @@ var config = require('./config');
 // routes
 var index = require('./routes/index');
 var books = require('./routes/books');
+var users = require('./routes/users');
 
 // high level Express object
 var app = express();
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/book/', books);
+app.use('/user/', users);
 
 // standart error
 // app.use(function(req, res, next) {
