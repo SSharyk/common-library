@@ -1,10 +1,15 @@
 {
   "name": "common-library",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "This is service for people who wants to free exchange books",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc -p public/ && concurrently \"npm run tsc:w\" \"node ./bin/www\"",
+    "postinstall": "cd public && npm install && typings install && cd .. && npm start",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w -p public/",
+    "typings": "typings"
   },
   "repository": {
     "type": "git",
@@ -19,12 +24,21 @@
   "homepage": "https://bitbucket.org/SSharyk/common-library#readme",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "bootstrap": "^3.3.6",
+    "concurrently": "^2.0.0",
     "cookie-parser": "^1.4.3",
+    "debug": "~2.2.0",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "jade": "~1.11.0",
     "mongojs": "^2.4.0",
     "mongoose": "^4.8.0",
     "morgan": "^1.7.0",
-    "path": "^0.12.7"
+    "open": "0.0.5",
+    "path": "^0.12.7",
+    "serve-favicon": "~2.3.0",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   }
 }

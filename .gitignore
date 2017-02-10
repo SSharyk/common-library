@@ -7,6 +7,12 @@ npm-debug.log*
 data/*.lock
 data/libraryDB.*
 
+# Angular 2 infrastructure
+public/typings
+public/app/**/*.js
+public/app/**/*.map
+public/node_modules
+
 # Runtime data
 pids
 *.pid
