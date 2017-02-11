@@ -12,12 +12,10 @@
 
 	<tbody>
 		<tr *ngFor="let b of books">
-			<td> {{b.Id}} </td>
+			<td>  <a href='http://localhost:4242/book/{{b.Id}}'> <{{b.Id}} </a> </td>
 			<td> {{b.Title}} </td>
-			<!--<td> {{b.Author.FullName}} </td>
-			<td> {{b.User}} </td>-->
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<td> {{b.Author.FullName}} </td>
+			<td> {{b.User}} </td>
 		</tr>
 	</tbody>
 </table>

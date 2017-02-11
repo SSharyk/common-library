@@ -9,6 +9,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class BookService extends HttpHelpers {
 	private _allBooksUrl: string = "http://localhost:4242/book";
+	private _specificBookUrl: string = "http://localhost:4242/book/";
 
 	constructor(private http: Http) {
     	super(http);
@@ -16,5 +17,9 @@ export class BookService extends HttpHelpers {
 
     loadBooks() {
         return this.getaction(this._allBooksUrl);
+    }
+
+    getBook(id:String) {
+    	return this.getaction(this._specificBookUrl + id);
     }
 }

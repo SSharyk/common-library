@@ -22,10 +22,9 @@ export class BooksComponent implements OnInit {
 	loadBooks() {
 		this.bookService.loadBooks().subscribe(
             (result) => { 
-            	//this.onBooksLoad(result) 
-              console.log("result is ", result);
               var resp = JSON.parse(result["_body"]);
-              console.log(resp);
+
+              /// TODO: use Mongoose population
               resp.forEach( (item, i, array) => this.getBookFromResponse(item));
             },
             (error) => {
@@ -35,8 +34,16 @@ export class BooksComponent implements OnInit {
 	}
 
   getBookFromResponse(item) {
-    var book = new BookModel(item);
-    console.log("book is ", book);
-    this.books.push(book);
+    this.bookService.getBook(item._id).subscribe(
+      (resp) => {
+        var res = JSON.parse(resp["_body"]);
+        console.log(res);
+        var book = new BookModel(res);
+        this.books.push(book);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
