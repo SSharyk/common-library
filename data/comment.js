@@ -12,6 +12,8 @@ var commentSchema = new Schema({
 		required: false
 	},
 
+	children: [{ type : Schema.ObjectId, ref: 'Comment' }],
+
 	text: {
 		type: String,
 		require: true

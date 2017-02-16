@@ -10,7 +10,24 @@ var userSchema = new Schema({
 	password: {
 		type: String,
 		required: true
-	}
+	},
+
+	address: {
+		town: {
+			type: String,
+			required: true
+		},
+		street: {
+			type: String,
+			required: false
+		},
+		house: {
+			type: String,
+			required: false
+		}
+	},
+
+	books: [{ type : Schema.ObjectId, ref: 'Book' }]
 },
 	{
 		timestamps: true

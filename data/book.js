@@ -19,13 +19,20 @@ var bookSchema = new Schema({
 		required: false
 	},
 
-	// Foreign keys
-	holderId: {
-		type: Schema.ObjectId,
-		required: true
+	author: {
+		firstName: {
+			type: String,
+			required: true,
+		},
+
+		lastName: {
+			type: String,
+			required: true
+		}
 	},
 
-	authorId: {
+	// Foreign keys
+	holderId: {
 		type: Schema.ObjectId,
 		required: true
 	},
@@ -34,6 +41,8 @@ var bookSchema = new Schema({
 		type: Schema.ObjectId,
 		required: true
 	},
+
+	comments: [{ type : Schema.ObjectId, ref: 'Comment' }],
 
 	//holder: userSchema,
 	///author: [authorSchema],

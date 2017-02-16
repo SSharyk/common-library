@@ -8,7 +8,7 @@ export class BookModel{
 	public constructor(obj: any) {
 		this.Id = obj.book._id;
 		this.Title = obj.book.title;
-		this.Author =  new AuthorModel(obj.author);
+		this.Author =  new AuthorModel(obj.book.author);
 		this.User = obj.user.login;
 	}
 }
