@@ -8,6 +8,10 @@ var BookC = require('../data/models').BookC;
 var UserC = require('../data/models').UserC;
 var CommentC = require('../data/models').CommentC;
 
+var Books = require('../data/book');
+var Users = require('../data/user');
+var Comments = require('../data/comment');
+
 var router = express.Router();
 router.use(bodyParser.json());
 
@@ -18,7 +22,16 @@ var instance = new mongodb.Db("libraryDB", mongoserver);
 /// TODO: show return sth like DalOperationStatus<T>
 /// TODO: thus, need find out if JS supports generics (or just use Object)
 
-router.route('/alldb')
+router.route('/v1')
+.get(function(req, res, next){
+	Books.find({}, function(err, books){
+		if (err) throw err;
+		console.log(books);
+		res.json(books)
+	});
+});
+
+router.route('/v2')
 .get(function(req, res, next) {
 	instance.open(function(err, db) {
 		var allBooks = [];
