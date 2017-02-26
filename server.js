@@ -15,6 +15,7 @@ var package = require('./package.json');
 var index = require('./routes/index');
 var books = require('./routes/books');
 var users = require('./routes/users');
+var routerC = require('./routes/routerC')
 
 
 // ------------------------------
@@ -47,6 +48,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/book/', books);
 app.use('/user/', users);
+app.use('/routerC/', routerC);
 
 
 // catch 404 and forward to error handler
@@ -67,7 +69,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: err
     });
@@ -78,9 +80,9 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.json({
     message: err.message,
-    error: {}
+    error: err
   });
 });
 
