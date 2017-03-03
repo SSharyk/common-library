@@ -1,21 +1,35 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+	<div class="row">
+		<h1>
+		  {{title}}
+		</h1>
+	</div>
+</div>
 
-<table>
-	<thead>
-		<th> ## </th>
-		<th> Title </th>
-		<th> Author </th>
-		<th> Posted by </th>
-	</thead>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col-md-4" *ngFor="let b of books">
+					<book-item [book]="b"> book </book-item>
+				</div>
+			</div>
+		</div>
 
-	<tbody>
-		<tr *ngFor="let b of books">
-			<td>  <a href='http://localhost:4242/book/{{b.Id}}'> <{{b.Id}} </a> </td>
-			<td> {{b.Title}} </td>
-			<td> {{b.Author.FullName}} </td>
-			<td> {{b.User}} </td>
-		</tr>
-	</tbody>
-</table>
+		<div class="col-md-3">
+			<h2 class="search-header"> Поиск книг </h2>
+			
+			<form name="search">
+				<input *ngFor="let auth of search.Authors" type="text" value="{{auth}}" />
+				<input type="text" placeholder="Автор" />
+
+				<button class="btn-primary" value="Искать!">Искать!</button>
+			</form>
+
+			<ul class="categories-list">
+				<li> История </li>
+				<li> Философия </li>
+			</ul>
+		</div>
+	</div>
+</div>

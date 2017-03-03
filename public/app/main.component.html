@@ -1,22 +1,4 @@
 
 <div class="container"> 
-	<!-- <a class="btn btn-primary btn-lg" (click)='redirectTo("/books")' role="button">Books »</a>
-	<a class="btn btn-primary btn-lg" (click)='redirectTo("/users")' role="button">Users »</a> -->
-
-	<ul class="nav nav-tabs">
-	    <li role="presentation" [ngClass]="{'active': visibleState['booksAreVisible']}">
-	        <a (click)="showBooks()" class="unselectable">Книги</a>
-	    </li>
-	    <li role="presentation" [ngClass]="{'active': visibleState['usersAreVisible']}">
-	        <a (click)="showUsers()"  class="unselectable">Пользователи</a>
-	    </li>
-	</ul>        
-
-	<all-books *ngIf="visibleState['booksAreVisible']"></all-books>
-	<all-users *ngIf="visibleState['usersAreVisible']"></all-users>
-
-	<!-- Router Outlet -->
-	<!-- <div class="container">
-	  <router-outlet></router-outlet>
-	</div> -->
+  <router-outlet></router-outlet>
 </div>

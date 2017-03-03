@@ -1,3 +1,28 @@
 table, table * {
 	border: 1px solid black;
 }
+
+form[name="search"] input {
+	display: block;
+	width: 100%;
+}
+
+.search-header{
+	width: 100%;
+	text-align: center;
+}
+
+form[name="search"] button {
+	margin: 10px 0;
+	width: 100%;
+}
+
+ul.categories-list {
+	margin: 30px auto;
+	outline: thin solid black;
+	list-style-type: none;
+}
+
+ul.categories-list > li {
+	font-size: 120%;
+}
