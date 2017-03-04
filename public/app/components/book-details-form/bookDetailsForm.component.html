@@ -1,0 +1,13 @@
+<div class="header clearfix">
+	<nav>
+	  <ul class="nav nav-pills pull-right">
+	    <li role="presentation"><a href="#" (click)="showTab(0);">Описание</a></li>
+	    <li role="presentation"><a href="#" (click)="showTab(1);">Отзывы</a></li>
+	    <li role="presentation"><a href="#" (click)="showTab(2);">Изображения</a></li>
+	  </ul>
+	</nav>
+</div>
+
+<div class="container">
+  <book-details-tab [book]="book" *ngIf="visibility[0]"> </book-details-tab>
+</div>

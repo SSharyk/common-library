@@ -1,48 +1,8 @@
 .book-container {
-	width: 100%;
-	background-color: white;
-	border-color: black;
-	border-radius: 5px;
-	clear: both;
-	outline: 1px solid black;
-	margin-bottom: 20px;
+	opacity: 0.75;
+	cursor: pointer;
 }
 
-.book-container p {
-	text-align: justify;
-}
-
-p.book-description {
-	min-height: 60px;
-}
-
-.book-header {
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-	border-bottom-style: dashed;
-	border-bottom-color: black;
-	border-bottom-width: 1px;
-
-	background-color: lightgrey;
-
-	padding: 10px 10%;
-
-	font-weight: bold;
-	color: white;
-}
-
-.book-footer > div {
-	display: inline;
-	text-decoration: underline;
-	/*text-decoration-style: dotted;
-	text-decoration-line: underline;
-	text-decoration-color: black;*/
-}
-
-.book-footer .book-year {
-	float: left;
-}
-
-.book-footer .book-pages {
-	float: right;
+.book-container:hover {
+	opacity: 1;
 }

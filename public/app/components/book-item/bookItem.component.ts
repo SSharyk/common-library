@@ -4,7 +4,8 @@ import { BookModel } from '../../models/BookModel';
 @Component({
   selector: 'book-item',
   templateUrl: `./app/components/book-item/bookItem.component.html`,
-  styleUrls: ['./app/components/book-item/bookItem.component.css'],
+  styleUrls: [ '../../../stylesheets/book-styles.css',
+               './app/components/book-item/bookItem.component.css'],
 })
 export class BookItemComponent implements OnInit {
   MAX_LENGTH: Number = 100;
