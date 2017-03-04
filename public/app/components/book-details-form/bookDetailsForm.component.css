@@ -1,3 +1,7 @@
 .book-container {
 	outline: none;
 }
+
+ul.nav.nav-pills.pull-right li a {
+	cursor: pointer;
+}

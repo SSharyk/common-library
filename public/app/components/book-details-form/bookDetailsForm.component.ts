@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BookModel } from '../../models/BookModel';
 import { BookDetailsTabComponent } from './details-tab/bookDetailsTab.component';
+import { BookCommentsTabComponent } from './comments-tab/bookCommentsTab.component';
 
 @Component({
   selector: 'book-details-form',
   templateUrl: `./app/components/book-details-form/bookDetailsForm.component.html`,
   styleUrls: ['../../../stylesheets/bootstrap.min.css',
               './app/components/book-details-form/bookDetailsForm.component.css'],
-  directives: [BookDetailsTabComponent],
+  directives: [BookDetailsTabComponent, BookCommentsTabComponent],
 })
 export class BookDetailsFormComponent implements OnInit {
   @Input()

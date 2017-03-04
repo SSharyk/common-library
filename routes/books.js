@@ -26,7 +26,6 @@ router.route('/')
 .post(function(req, res, next) {
 	console.log("POST Book");
 	console.log(req.body);
-	/// TODO: add first comment firstly
 	Books.create(req.body, function (err, book) {
 		if (err) throw err;		
 		console.log('Book created successfully!');
@@ -56,15 +55,10 @@ router.route('/:bookId')
 		Users.findById(book.holderId, function(err, user) {
 			if (err) throw err;
 
-			Authors.findById(book.authorId, function(err, auth){
-				if (err) throw err;
-
-				res.json({
-					book: book,
-					user: user,
-					author: auth
-				});
-			})
+			res.json({
+				book: book,
+				user: user,
+			});
 		})
 	});
 })
@@ -84,6 +78,28 @@ router.route('/:bookId')
 	Books.findByIdAndRemove(req.params.bookId, function (err, resp) { 
 		if (err) throw err;
 		res.json(resp);
+	});
+});
+
+
+/* Work with comments */
+router.route('/:bookId/comments')
+.get(function(req, res, next) {
+	Comments.find({bookId: req.params.bookId}, function(err, comments){
+		if (err) throw err;
+
+		console.log("comments");
+		console.log(comments);
+		res.json(comments);
+	});
+})
+.post(function(req, res, next) {
+	Comments.create(req.body, function (err, comment) {
+		if (err) throw err;		
+		var id = comment._id;
+		console.log("Return comment: ");
+		console.log(comment);
+		res.json(comment)
 	});
 });
 

@@ -12,7 +12,11 @@ var commentSchema = new Schema({
 		required: false
 	},
 
-	children: [{ type : Schema.ObjectId, ref: 'Comment' }],
+	//children: [{ type : Schema.ObjectId, ref: 'Comment' }],
+	bookId: {
+		type: Schema.ObjectId,
+		required: true
+	},
 
 	text: {
 		type: String,

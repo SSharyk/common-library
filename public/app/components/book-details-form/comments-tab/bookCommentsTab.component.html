@@ -1,0 +1,11 @@
+<div class="book-content">
+	<div *ngFor="let c of comments" class="comment-container">
+		<div class="comment-text">
+			<p> {{c.Text}} </p>
+		</div>
+	</div>
+
+	<div *ngIf="comments.length==0"> 
+		<p> Еще никто не оставил комментариев к этой книге </p> 
+	</div>
+</div>
