@@ -1,7 +1,7 @@
 <div class="book-content">
 	<p> <i> {{book?.Author?.FullName}} </i> </p>
 	<p class="book-description"> {{book?.Description}} </p>
-	<p> Принадлежит: <a href='http://localhost:4242/user/{{book?.User}}'> {{book?.User}} </a> </p>
+	<p> Принадлежит: <a href='{{DOMAIN}}/user/{{book?.User}}'> {{book?.User}} </a> </p>
 
 	<div class="book-footer">
 		<div class="book-year"> {{book?.Year}} </div>

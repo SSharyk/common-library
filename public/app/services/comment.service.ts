@@ -8,7 +8,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class CommentService extends HttpHelpers {
-	private _allBookCommentsUrl: string = "http://localhost:4242/book/_/comments";
+	private _allBookCommentsUrl: string = "book/_/comments";
 
 	constructor(private http: Http) {
     	super(http);

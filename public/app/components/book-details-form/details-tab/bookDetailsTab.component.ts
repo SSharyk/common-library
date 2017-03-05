@@ -11,6 +11,8 @@ export class BookDetailsTabComponent implements OnInit {
   @Input()
   public book : BookModel;
 
+  DOMAIN: String = "http://localhost:4242";
+
   ngOnInit(){
   }
 }

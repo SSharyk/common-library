@@ -7,8 +7,8 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class UserService extends HttpHelpers {
-	private _allUsersUrl: string = "http://localhost:4242/user";
-	private _specificUserUrl: string = "http://localhost:4242/user/";
+	private _allUsersUrl: string = "user";
+	private _specificUserUrl: string = "user/";
 
 	constructor(private http: Http) {
     	super(http);

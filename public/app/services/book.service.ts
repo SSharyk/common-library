@@ -8,8 +8,8 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class BookService extends HttpHelpers {
-	private _allBooksUrl: string = "http://localhost:4242/book";
-	private _specificBookUrl: string = "http://localhost:4242/book/";
+	private _allBooksUrl: string = "book";
+	private _specificBookUrl: string = "book/";
 
 	constructor(private http: Http) {
     	super(http);

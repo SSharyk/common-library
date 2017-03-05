@@ -16,7 +16,7 @@ var router = express.Router();
 router.use(bodyParser.json());
 
 var mongodb = require("mongodb");
-var mongoserver = new mongodb.Server("localhost", 27017);
+var mongoserver = new mongodb.Server(config.HOST, 27017);
 var instance = new mongodb.Db("libraryDB", mongoserver);
 
 /// TODO: show return sth like DalOperationStatus<T>

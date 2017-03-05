@@ -1,10 +1,10 @@
 <div class="container book-container">
-	<p class="book-header"> <a href='http://localhost:4242/book/{{book?.Id}}'> {{book?.Title}} </a> </p>
+	<p class="book-header"> <a href='{{DOMAIN}}/book/{{book?.Id}}'> {{book?.Title}} </a> </p>
 
 	<div class="book-content">
 		<p> <i> {{book?.Author?.FullName}} </i> </p>
 		<p class="book-description"> {{ShortDescription}} </p>
-		<p> Принадлежит: <a href='http://localhost:4242/user/{{book?.User}}'> {{book?.User}} </a> </p>
+		<p> Принадлежит: <a href='{{DOMAIN}}/user/{{book?.User}}'> {{book?.User}} </a> </p>
 
 		<div class="book-footer">
 			<div class="book-year"> {{book?.Year}} </div>

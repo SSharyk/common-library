@@ -9,6 +9,7 @@ import { BookModel } from '../../models/BookModel';
 })
 export class BookItemComponent implements OnInit {
   MAX_LENGTH: Number = 100;
+  DOMAIN: String = "http://localhost:4242";
 
   @Input()
   public book : BookModel;

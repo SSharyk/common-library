@@ -3,6 +3,7 @@ import {Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 export class HttpHelpers {
+    private _domain: String = "http://localhost:4242/";
     constructor(private _http: Http) {
     }
 
@@ -13,7 +14,7 @@ export class HttpHelpers {
     errormsg: string;
 
     getaction(path: string) {
-        return this._http.get(path);
+        return this._http.get(this._domain + path);
             // .map(res => {
             //     return res.json();
             // })
@@ -25,7 +26,7 @@ export class HttpHelpers {
         let body = JSON.stringify(param);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this._http.post(path, body, options)
+        return this._http.post(this._domain + path, body, options)
             .map(m => {
                 var jsonresult = m.json();
                 if (jsonresult.haserror) {
@@ -38,7 +39,7 @@ export class HttpHelpers {
 
 
     deleteaction(path: string) {
-        return this._http.delete(path)
+        return this._http.delete(this._domain + path)
             .map(res => res.json())
             .catch(this._handleError);
     }
@@ -65,7 +66,7 @@ export class HttpHelpers {
     }
     
     logoutaction(path: string) {
-        return this._http.get(path)
+        return this._http.get(this._domain + path)
             .map(res => {
                 return res;
             })
