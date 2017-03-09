@@ -1,0 +1,97 @@
+.info-container {
+    display: table;
+    margin-right: 0;
+    height:90px;
+    padding-top:2px;
+    text-wrap:none;
+    width: 100%;
+    background:  url(../../../images/library-header.jpg) repeat-x center center;
+}
+
+    .info-container .info-statistics-wrapper {
+         max-width: 330px;
+         font-family: "Times New Roman"
+     }
+     
+    .statistics-text {
+        width: 100%;
+       /* font-family: 'GothicRusMedium', Tahoma;*/
+        font-size: 28px;
+        line-height: 8px;
+        text-align: right;
+        padding: 22px 16px;
+        margin-top: 10px;
+        color: white;
+    }
+    
+    /* Account */
+#info-account{
+    text-wrap:none;
+    float:right;
+    vertical-align:central;
+    padding-top: 14px;
+}
+
+    #info-account > * {
+        float: right !important;
+    }
+
+#img-user {
+    opacity: 0.8;
+    cursor: pointer;
+    text-align:center;
+    font-family: 'Arial';
+}
+#img-user img{
+   width: 100%;
+   height: 64px;
+}
+    
+#img-user:hover{
+    opacity: 1;
+}
+
+.dropDownWrapper {
+    text-align: right;
+    position: relative;
+}
+    .dropDownWrapper #user-dropdown {
+        margin-right: 30px;
+    }
+
+.dropdown {
+    visibility: hidden;
+    position: absolute;
+    display: inline;
+    /* right: calc(7.6% - 2px); */
+    top: 13px;
+    right: -6px !important;
+    z-index: 100;
+    text-align: left;
+}
+
+.dropdown-content {
+    background: url('../../../images/old-paper-stains-repeatable-min.jpg') repeat-y;
+    background-size: 100%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 9px;
+    border: 2px solid #b75427;
+}
+
+.dropdown-content a{
+    cursor: pointer;
+    font-size: 13px;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #a34804;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(154, 73, 12, 0.32);
+}
+
+.show {
+    visibility: visible !important;
+}

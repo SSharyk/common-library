@@ -15,6 +15,7 @@ var package = require('./package.json');
 var index = require('./routes/index');
 var books = require('./routes/books');
 var users = require('./routes/users');
+var stat = require('./routes/stat');
 var routerC = require('./routes/routerC')
 
 
@@ -48,6 +49,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/book/', books);
 app.use('/user/', users);
+app.use('/stat/', stat);
 app.use('/routerC/', routerC);
 
 

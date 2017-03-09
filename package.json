@@ -1,6 +1,6 @@
 {
   "name": "common-library",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "This is service for people who wants to free exchange books",
   "private": true,
   "scripts": {

@@ -5,3 +5,8 @@
 ul.nav.nav-pills.pull-right li a {
 	cursor: pointer;
 }
+
+ul.nav.nav-pills.pull-right,
+ul.nav.nav-pills.pull-right:hover {
+	background: #eee;
+}

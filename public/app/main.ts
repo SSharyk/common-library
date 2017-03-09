@@ -11,6 +11,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { BookService } from './services/book.service';
 import { UserService } from './services/user.service';
+import { InfoPanelComponent } from './components/info-panel/infoPanel.component';
 import { BooksComponent } from './components/books/books.component';
 import { UsersComponent } from './components/users/users.component'
 
@@ -22,7 +23,7 @@ import Approutes = require("./routes");
 @Component({
     selector: 'my-app',
     templateUrl: './app/main.component.html',
-    directives: [BooksComponent, UsersComponent, RouterLink, RouterOutlet, ROUTER_DIRECTIVES ],
+    directives: [BooksComponent, UsersComponent, InfoPanelComponent, RouterLink, RouterOutlet, ROUTER_DIRECTIVES ],
     providers: [BookService, UserService, HTTP_PROVIDERS, ROUTER_PROVIDERS]
 })
 export class AppComponent {

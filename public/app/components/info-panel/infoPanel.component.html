@@ -1,0 +1,24 @@
+<div class="container info-container">
+	<div class="row">
+		<div class="col-md-3 info-statistics-wrapper">
+			<p class="statistics-text"> Всего книг: {{books}} </p>
+			<p class="statistics-text"> Пользователей: {{users}} </p>
+		</div>
+		<div class="col-md-1" id="info-account">
+			<div id="img-user">
+				<img src="../../../images/logo.png" (click)="showDropDownMenu()"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="dropDownWrapper">
+    <div id="user-dropdown" class="dropdown" clickOutside (clickOutside)="hideDropDownMenu()">
+        <div id="myDropdown" class="dropdown-content">
+            <a class="unselectable" (click)='showMyBooks()'><b>Мои книги</b></a>
+            <a class="unselectable" (click)="showHelpPopUp()"><b>Помощь</b></a>
+            <a class="unselectable" (click)="showHistory()"><b>История</b></a>
+            <a class="unselectable" (click)='logout()'><b>Выход</b></a>
+        </div>
+    </div>
+</div>
