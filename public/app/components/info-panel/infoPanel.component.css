@@ -5,7 +5,7 @@
     padding-top:2px;
     text-wrap:none;
     width: 100%;
-    background:  url(../../../images/library-header.jpg) repeat-x center center;
+    background:  url(../../../images/library-header.jpg) repeat center center;
 }
 
     .info-container .info-statistics-wrapper {
@@ -59,6 +59,13 @@
         margin-right: 30px;
     }
 
+    .dropDownWrapper #login-dropdown {
+       position: fixed;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+    }
+
 .dropdown {
     visibility: hidden;
     position: absolute;
@@ -94,4 +101,26 @@
 
 .show {
     visibility: visible !important;
+}
+
+form div.form-field-wrapper {
+    display: block;
+    margin-bottom: 20px;
+}
+
+form label.form-label {
+    display: block;
+    float: left;
+    margin: 5px;
+}
+
+form input {
+    width: 90%;
+    margin: 10px 5%;
+}
+
+form button {
+    display: inline;
+    width: 40%;
+    margin: 10px 4%;
 }

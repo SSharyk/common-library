@@ -12,7 +12,12 @@ var userSchema = new Schema({
 		required: true
 	},
 
-	address: {
+	email: {
+		type: String,
+		required: true
+	},
+
+	address: [{
 		town: {
 			type: String,
 			required: true
@@ -25,7 +30,7 @@ var userSchema = new Schema({
 			type: String,
 			required: false
 		}
-	},
+	}],
 
 	books: [{ type : Schema.ObjectId, ref: 'Book' }]
 },

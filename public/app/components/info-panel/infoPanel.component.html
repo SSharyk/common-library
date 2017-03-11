@@ -4,21 +4,59 @@
 			<p class="statistics-text"> Всего книг: {{books}} </p>
 			<p class="statistics-text"> Пользователей: {{users}} </p>
 		</div>
+		<div class="col-md-8"></div>
 		<div class="col-md-1" id="info-account">
 			<div id="img-user">
 				<img src="../../../images/logo.png" (click)="showDropDownMenu()"/>
+			</div>
+			<div class="info-statistics-wrapper">
+				<p *ngIf="loggedUser!=undefined && loggedUser!=null" class="statistics-text">{{loggedUser.Login}}</p>
 			</div>
 		</div>
 	</div>
 </div>
 
+<!-- Account drop-down menu -->
 <div class="dropDownWrapper">
     <div id="user-dropdown" class="dropdown" clickOutside (clickOutside)="hideDropDownMenu()">
-        <div id="myDropdown" class="dropdown-content">
-            <a class="unselectable" (click)='showMyBooks()'><b>Мои книги</b></a>
-            <a class="unselectable" (click)="showHelpPopUp()"><b>Помощь</b></a>
-            <a class="unselectable" (click)="showHistory()"><b>История</b></a>
-            <a class="unselectable" (click)='logout()'><b>Выход</b></a>
+        <div id="accountDropdown" class="dropdown-content">
+        	<div *ngIf="!(loggedUser!=undefined && loggedUser!=null)">
+	            <a class="unselectable" (click)="showLoginForm(false)"><b>Войти</b></a>
+	            <a class="unselectable" (click)="showLoginForm(true)"><b>Регистрация</b></a>
+	            <a class="unselectable" (click)="showHelpPopUp()"><b>Помощь</b></a>
+	        </div>
+
+	        <div *ngIf="loggedUser!=undefined && loggedUser!=null">
+	            <a class="unselectable" (click)='showMyBooks()'><b>Мои книги</b></a>
+	            <a class="unselectable" (click)='showHistory()'><b>История</b></a>
+	            <a class="unselectable" (click)='logout()'><b>Выход</b></a>
+	        </div>
         </div>
     </div>
+</div>
+
+<!-- Registration from -->
+<div class="dropDownWrapper custom-modal-window" *ngIf="isFormVisible">
+	<h2 *ngIf="errorMessage.length>0"> {{errorMessage}} </h2>
+	<div id="login-dropdown" class="dropdown">
+		<div id="loginFormDropdown" class="dropdown-content show">
+		  	<form name="loginForm">
+  		    	<div class="form-field-wrapper">
+  		    		<label class="form-label" for="login">Логин:</label> 
+  		    		<input type="text" placeholder="Например, bibliophile" name="login" id="fieldLogin" />
+  		    	</div>
+  		    	<div class="form-field-wrapper">
+					<label class="form-label" for="password">Пароль:</label> 
+					<input type="password" placeholder="Например, **********" name="password" id="fieldPassword" />
+				</div>
+				<div class="form-field-wrapper" *ngIf="isRegistration">
+					<label class="form-label" for="email">Адрес электронной почты:</label> 
+					<input type="email" name="email" placeholder="Например, fakeUser@gmail.com" id="fieldEmail" />
+				</div>
+				<button *ngIf="!isRegistration" (click)="login(); hideLoginForm();">Войти</button>
+				<button *ngIf="isRegistration" (click)="register(); hideLoginForm();">Создать аккаунт</button>
+				<button (click)="hideLoginForm()">Отмена</button>
+  		    </form>
+  		</div>
+  	</div>
 </div>
