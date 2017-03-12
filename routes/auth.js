@@ -25,7 +25,7 @@ router.get('/current', function(req, res, next) {
 	} else {
 		res.json({
 			status: 401,
-			message: "Вы не авторизованы"
+			message: "Вы еще не авторизованы"
 		});
 	}
 });

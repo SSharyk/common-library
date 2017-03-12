@@ -37,9 +37,9 @@
 
 <!-- Registration from -->
 <div class="dropDownWrapper custom-modal-window" *ngIf="isFormVisible">
-	<h2 *ngIf="errorMessage.length>0"> {{errorMessage}} </h2>
 	<div id="login-dropdown" class="dropdown">
 		<div id="loginFormDropdown" class="dropdown-content show">
+			<h2> {{errorMessage}} </h2>
 		  	<form name="loginForm">
   		    	<div class="form-field-wrapper">
   		    		<label class="form-label" for="login">Логин:</label> 

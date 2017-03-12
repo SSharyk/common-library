@@ -95,6 +95,10 @@
     border-bottom: 1px solid #a34804;
 }
 
+.dropdown-content h2 {
+    color: red;
+}
+
 .dropdown-content a:hover {
     background-color: rgba(154, 73, 12, 0.32);
 }

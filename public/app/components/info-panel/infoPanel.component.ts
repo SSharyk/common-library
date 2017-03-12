@@ -62,7 +62,9 @@ export class InfoPanelComponent implements OnInit {
         this.loggedUser = new UserModel(body);
       } else {
         this.loggedUser = null;
-        alert(body["message"]);
+        this.errorMessage = body["message"];
+        if (this.errorMessage != "Вы еще не авторизованы") 
+          this.showLoginForm(this.isRegistration);
       }
     } else {
       this.loggedUser = this._authService.CurrentUser;
@@ -119,7 +121,7 @@ export class InfoPanelComponent implements OnInit {
   loginFailed(err) {
     console.error(err);
     this.showLoginForm(this.isRegistration);
-    this.errorMessage = err["message"];
+    this.errorMessage = JSON.parse(err["_body"])["message"];
   }
 
   logoutFailed(err) {
