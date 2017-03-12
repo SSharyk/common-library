@@ -2,7 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var Authors = require('../data/author');
 var Books = require('../data/book');
 var Users = require('../data/user');
 var Comments = require('../data/comment');
@@ -16,19 +15,14 @@ router.use(bodyParser.json());
 /* GET home page. */
 router.route('/')
 .get(function(req, res, next) {
-	console.log("GET Book");
 	Books.find({}, function (err, book) {
 		if (err) throw err;
-		console.log(book);
 		res.json(book);
 	});
 })
 .post(function(req, res, next) {
-	console.log("POST Book");
-	console.log(req.body);
 	Books.create(req.body, function (err, book) {
 		if (err) throw err;		
-		console.log('Book created successfully!');
 		var id = book._id;
 		res.writeHead(200, {
 			'Content‐Type': 'text/plain'
@@ -37,7 +31,6 @@ router.route('/')
 	});
 })
 .delete(function(req, res, next) {
-	console.log("DELETE Books");
 	Books.remove({}, function (err, resp) {
 		if (err) throw err;
 		res.json(resp);
@@ -48,7 +41,6 @@ router.route('/')
 /* Get specific book */
 router.route('/:bookId')
 .get(function(req, res, next) {
-	console.log("GET Book # " + req.params.bookId);
 	Books.findById(req.params.bookId, function (err, book) {
 		if (err) throw err;
 
@@ -63,7 +55,6 @@ router.route('/:bookId')
 	});
 })
 .put(function(req, res, next){
-	console.log("PUT Book # ${req.params.bookId}");
 	Books.findByIdAndUpdate(req.params.dishId, {
 		$set: req.body
 	}, {
@@ -74,7 +65,6 @@ router.route('/:bookId')
 	});
 })
 .delete(function(req, res, next) {
-	console.log("DELETE Book # " + req.params.bookId);
 	Books.findByIdAndRemove(req.params.bookId, function (err, resp) { 
 		if (err) throw err;
 		res.json(resp);
@@ -87,9 +77,6 @@ router.route('/:bookId/comments')
 .get(function(req, res, next) {
 	Comments.find({bookId: req.params.bookId}, function(err, comments){
 		if (err) throw err;
-
-		console.log("comments");
-		console.log(comments);
 		res.json(comments);
 	});
 })
@@ -97,8 +84,6 @@ router.route('/:bookId/comments')
 	Comments.create(req.body, function (err, comment) {
 		if (err) throw err;		
 		var id = comment._id;
-		console.log("Return comment: ");
-		console.log(comment);
 		res.json(comment)
 	});
 });

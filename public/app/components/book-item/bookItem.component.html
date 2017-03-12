@@ -2,7 +2,7 @@
 	<p class="book-header"> <a href='{{DOMAIN}}/book/{{book?.Id}}'> {{book?.Title}} </a> </p>
 
 	<div class="book-content">
-		<p> <i> {{book?.Author?.FullName}} </i> </p>
+		<i *ngFor="let author of book?.Authors"> | {{author?.FullName}} </i>
 		<p class="book-description"> {{ShortDescription}} </p>
 		<p> Принадлежит: <a href='{{DOMAIN}}/user/{{book?.User}}'> {{book?.User}} </a> </p>
 

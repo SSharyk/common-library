@@ -19,7 +19,7 @@ var bookSchema = new Schema({
 		required: false
 	},
 
-	author: {
+	authors: [{
 		firstName: {
 			type: String,
 			required: true,
@@ -29,7 +29,7 @@ var bookSchema = new Schema({
 			type: String,
 			required: true
 		}
-	},
+	}],
 
 	// Foreign keys
 	holderId: {

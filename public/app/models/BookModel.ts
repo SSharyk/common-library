@@ -3,8 +3,7 @@ export class BookModel{
 	public Id: any;
 	public Title: String;
 	public Description: String;	
-	/// TODO: not the only author, but list
-	public Author: AuthorModel;
+	public Authors: AuthorModel[];
 	public Year: Number;
 	public Pages: Number;
 	public User: String;
@@ -13,7 +12,9 @@ export class BookModel{
 		this.Id = obj.book._id;
 		this.Title = obj.book.title;
 		this.Description = obj.book.description;
-		this.Author =  new AuthorModel(obj.book.author);
+		this.Authors = [];
+		for (var i=0; i<obj.book.authors.length; i++)
+			this.Authors.push(new AuthorModel(obj.book.authors[i]));
 		this.Year = obj.book.year;
 		this.Pages = obj.book.pages;
 		this.User = obj.user.login;
