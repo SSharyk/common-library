@@ -105,6 +105,18 @@ export class InfoPanelComponent implements OnInit {
     );
   }
 
+  register() {
+    this.errorMessage = "";
+    let login = (document.getElementById("fieldLogin") as HTMLInputElement).value;
+    let password = (document.getElementById("fieldPassword") as HTMLInputElement).value;
+    let email = (document.getElementById("fieldEmail") as HTMLInputElement).value;
+
+    this._authService.register(login, md5(password), email).subscribe(
+      (resp) => this.setCurrentUser(resp),
+      (err)  => this.registerFailed(err)
+    );    
+  }
+
   logout() {
     this._authService.logout().subscribe(
       (resp) => this.clearCurrentUser(),
@@ -119,6 +131,12 @@ export class InfoPanelComponent implements OnInit {
   }
 
   loginFailed(err) {
+    console.error(err);
+    this.showLoginForm(this.isRegistration);
+    this.errorMessage = JSON.parse(err["_body"])["message"];
+  }
+
+  registerFailed(err) {
     console.error(err);
     this.showLoginForm(this.isRegistration);
     this.errorMessage = JSON.parse(err["_body"])["message"];

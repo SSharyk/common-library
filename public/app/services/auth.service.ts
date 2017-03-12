@@ -17,6 +17,7 @@ export class AuthService extends HttpHelpers {
 
 	private _getCurrentUserUrl: string = "auth/current/";
 	private _loginUrl: string = "auth/login/{L}/{P}";
+    private _registerUrl: string = "auth/register/{L}/{P}/{E}";
     private _logoutUrl: string = "auth/logout";
 
 	constructor(private http: Http) {
@@ -52,6 +53,10 @@ export class AuthService extends HttpHelpers {
 
     login(login: string, password: string) {
         return this.getaction(this._loginUrl.replace("{L}", login).replace("{P}", password));
+    }
+
+    register(login: string, password: string, email: string) {
+        return this.getaction(this._registerUrl.replace("{L}", login).replace("{P}", password).replace("{E}", email));
     }
 
     logout() {
