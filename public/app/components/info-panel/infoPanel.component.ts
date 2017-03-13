@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 //import { FormsModule } from "@angular/forms";
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { InfoService } from '../../services/info.service';
@@ -31,7 +32,8 @@ export class InfoPanelComponent implements OnInit {
 
   constructor(private _infoService: InfoService,
               private _authService: AuthService,
-              private _cookieService: CookieService) {
+              private _cookieService: CookieService,
+              private _router: Router) {
     this.errorMessage = "";
   }
 
@@ -119,7 +121,10 @@ export class InfoPanelComponent implements OnInit {
 
   logout() {
     this._authService.logout().subscribe(
-      (resp) => this.clearCurrentUser(),
+      (resp) => {
+        this.clearCurrentUser();
+        this._router.navigate(['./']);
+      },
       (err)  => this.logoutFailed(err)
     );
   }
@@ -145,5 +150,14 @@ export class InfoPanelComponent implements OnInit {
   logoutFailed(err) {
     console.error(err);
     this.loggedUser = null;
+  }
+
+  toMain() {
+    console.log("to main");
+    this._router.navigate(['./']);
+  }
+  
+  showMyBooks() {
+    this._router.navigate(['./my']);
   }
 }

@@ -6,7 +6,12 @@
     text-wrap:none;
     width: 100%;
     background:  url(../../../images/library-header.jpg) repeat center center;
+    cursor: pointer;
 }
+
+    .info-container .clickable-to-main {
+        min-height: 150px;
+    }
 
     .info-container .info-statistics-wrapper {
          max-width: 330px;

@@ -1,0 +1,55 @@
+<div class="container">
+	<div class="row">
+		<h1>
+		  {{title}}
+		</h1>
+	</div>
+</div>
+
+<div class="container">
+	<table>
+		<thead class="row">
+			<th class="col-md-6"> Название </th>
+			<th class="col-md-4"> Автор </th>
+			<th class="col-md-1"> Год </th>
+			<th class="col-md-1"> Страниц </th>
+		</thead>
+
+		<tbody>
+			<tr class="row book-container" *ngFor="let b of books" (click)="showBookDetails(b);">
+				<td class="col-md-6 book-title"> {{b?.Title}} </td>
+				<td class="col-md-4">
+					<ul class="authors-list">
+						<li class="book-info" *ngFor="let a of b?.Authors"> {{a.FullName}} </li>
+					</ul>
+					<span class="book-info" *ngIf="b?.Authors.length==0"> не указан </span>
+				</td>
+				<td class="col-md-1 book-info"> {{b?.Year}} </td>
+				<td class="col-md-1 book-info"> {{b?.Pages}} </td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h3 class="row bok-container" *ngIf="books.length==0"> У Вас еще нет книг </h3>
+</div>
+
+
+<div *ngIf="SelectedBook != undefined && IsSelected"
+     class="modal fade show in danger" id="book-details">
+    <div class="modal-dialog" role="dialog">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	            <button type="button" class="close navbar-brand" data-dismiss="modal" (click)="closeForm()">&times;</button>
+				<h3> {{SelectedBook?.Title}} </h3>
+			</div>
+
+			<div class="modal-body">	  	
+	  		    <book-details-form [book]="SelectedBook"> Здесь будут отображаться детали книги. Пожалуйста, подождите </book-details-form>
+	  		</div>
+
+			<div class="modal-footer">
+	            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeForm();"> Закрыть</button>
+	        </div>
+        </div>
+    </div>
+</div>

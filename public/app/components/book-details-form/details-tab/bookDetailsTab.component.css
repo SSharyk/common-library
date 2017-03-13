@@ -1,3 +1,5 @@
 .book-content p.book-description {
 	min-height: 0;
+	width: 90%;
+	padding: 15px 5%;
 }

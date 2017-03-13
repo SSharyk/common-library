@@ -55,11 +55,12 @@ app.use('/auth/', auth);
 app.use('/routerC/', routerC);
 
 
-// catch 404 and forward to error handler
+// catch 404 and forward to home page
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  // var err = new Error('Not Found');
+  // err.status = 404;
+  // next(err);
+  res.redirect('/');
 });
 
 

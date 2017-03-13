@@ -10,3 +10,8 @@ ul.nav.nav-pills.pull-right,
 ul.nav.nav-pills.pull-right:hover {
 	background: #eee;
 }
+
+.book-tabs-container {
+	width: 100%;
+	font-weight: bold;
+}
