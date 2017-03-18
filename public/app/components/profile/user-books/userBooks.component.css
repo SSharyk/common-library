@@ -29,3 +29,7 @@ table tr:hover {
 .book-container .book-info {
 	font-style: italic;
 }
+
+.header-wrapper img {
+	cursor: pointer;
+}

@@ -1,6 +1,6 @@
 {
   "name": "common-library",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "This is service for people who wants to free exchange books",
   "private": true,
   "scripts": {
@@ -38,6 +38,7 @@
     "morgan": "^1.7.0",
     "open": "0.0.5",
     "path": "^0.12.7",
+    "properties-mapper": "^0.1.1",
     "serve-favicon": "~2.3.0",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"

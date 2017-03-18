@@ -71,6 +71,20 @@
        transform: translate(-50%, -50%);
     }
 
+        #login-dropdown button {
+            background: inherit;
+            border-radius: 15px;
+            border: 2px solid #a34804;
+            opacity: 0.7;
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        #login-dropdown button:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+
 .dropdown {
     visibility: hidden;
     position: absolute;

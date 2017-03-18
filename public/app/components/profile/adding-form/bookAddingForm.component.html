@@ -1,0 +1,50 @@
+<div id="myModal" class="modal fade show in danger" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="closeForm()">&times;</button>
+                <h4 class="modal-title">{{_modalHeader}}</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="BookForm" [ngFormModel]="_bookForm" >
+                    <div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !TitleControl.valid, 'has-success': TitleControl.valid }">
+                        <label class="control-label" for="TitleControl" *ngIf="!TitleControl.valid">Поле "Название" должно быть заполнено</label>
+                        <label class="control-label input-label" for="TitleControl"> Название: </label>
+                        <input #Title type="text" ngControl="Title" placeholder="Название" class="form-control" value={{book?.Title}}/>
+                    </div>
+
+                    <div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !DescriptionControl.valid, 'has-success': DescriptionControl.valid }">
+                        <label class="control-label" for="DescriptionControl" *ngIf="!DescriptionControl.valid">Длина поля "Описание" - не более 255 символов</label>
+                        <label class="control-label input-label" for="DescriptionControl"> Описание: </label>
+                        <textarea #Description type="text" ngControl="Description" placeholder="Описание" class="form-control" value={{book?.Description}}> </textarea>
+                    </div>
+
+                    <div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !AuthorsControl.valid, 'has-success': AuthorsControl.valid }">
+                        <label class="control-label input-label" for="AuthorsControl"> Автор(ы): </label>
+                        <textarea #Authors type="text" ngControl="Authors" placeholder="Авторы (через запятую)" class="form-control" value="authors"> </textarea>
+                    </div>
+
+
+                    <div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !YearControl.valid, 'has-success': YearControl.valid }">
+                        <label class="control-label" for="YearControl" *ngIf="!YearControl.valid">Поле "Год издания" должно быть заполнено</label>
+                        <label class="control-label input-label" for="YearControl"> Год издания: </label>
+                        <input #Year type="number" ngControl="Year" placeholder="Год издания" class="form-control" value={{book?.Year}}/>
+                    </div>
+
+                    <div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !PagesControl.valid, 'has-success': PagesControl.valid }">
+                        <label class="control-label" for="PagesControl" *ngIf="!PagesControl.valid">Поле "Количество страниц" должно быть заполнено</label>
+                        <label class="control-label input-label" for="PagesControl"> Страниц: </label>
+                        <input #Pages type="number" ngControl="Pages" placeholder="Количество страниц" class="form-control" value={{book?.Pages}}/>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="save();"> Создать</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeForm();"> Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>

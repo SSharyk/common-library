@@ -1,0 +1,78 @@
+
+
+#BookForm input,
+#BookForm textarea {
+    width: 80%;
+    margin: 0 10% 15px 10%;
+    display: block;
+    max-width: 80%;
+    min-width: 100px;
+}
+
+#BookForm label {
+    margin-left: 10%;
+    width: 30%;
+}
+
+#BookForm select {
+    float: right;
+    margin-right: 10%;
+    width: 50%;
+}
+
+.control-label {
+    width: 80% !important;
+    margin: 10px 10%;
+}
+
+
+.modal-dialog {
+    padding-top: 100px !important;
+}
+
+.modal-content {
+    background: url('../../../../../images/old-paper-stains-repeatable-min.jpg') repeat-y;
+    background-size: 100%;
+    overflow-x: hidden;
+     border: 1px solid rgba(163, 72, 4, 0.7);
+    display: block;
+}
+
+.modal-footer {
+    border: none !important;
+    margin-top: 10px;
+    padding-top: 0;
+}
+    .modal-footer button {
+        background: inherit;
+        border-radius: 15px;
+        border: 2px solid #a34804;
+        opacity: 0.7;
+        margin-top: 10px;
+        font-size: 20px;
+    }
+    .modal-footer button:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    .modal-body input,
+    .modal-body textarea,
+    .modal-body select
+     {
+        background: inherit;
+        border-radius: 7px;
+        border: 2px solid #a34804;
+        display: inline;
+        float: left;
+        width: 70%;
+    }
+    .modal-body option {
+        background-color: blanchedalmond !important;
+    }
+
+.input-label {
+    width: 15% !important;
+    color: black;
+    display: inline;
+}

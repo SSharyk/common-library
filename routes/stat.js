@@ -12,9 +12,7 @@ router.route('/')
 .get(function(req, res, next) {
 	Users.find({}, function (err, usersCollection){
 		if (err) throw err;
-		console.log(usersCollection);
 		Books.find({}, function (err, booksCollection){
-			console.log(booksCollection);
 			if (err) throw err;
 
 			var resp = {

@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var mapper = require('properties-mapper');
 
 var Books = require('../data/book');
 var Users = require('../data/user');
@@ -21,13 +22,26 @@ router.route('/')
 	});
 })
 .post(function(req, res, next) {
-	Books.create(req.body, function (err, book) {
-		if (err) throw err;		
-		var id = book._id;
-		res.writeHead(200, {
-			'Content‐Type': 'text/plain'
+	let mappedBook = mapRequestToMongooseSchema(req.body);
+
+	var userLogin = req.headers["login"];
+	Users.find({login: userLogin}, function(err, holder) {
+		if (err) throw err;
+		if (holder == null) throw new Error("User is not found");
+
+		mappedBook["holderId"] = holder[0]._id;
+
+		Books.create(mappedBook, function (err, book) {
+			if (err) throw err;		
+			
+			var id = book._id;
+			let bookResultObject = {
+				book: book,
+				user: holder[0]
+			};
+
+			res.json(bookResultObject);
 		});
-		res.end('Added the book with id: ' + id);
 	});
 })
 .delete(function(req, res, next) {
@@ -36,6 +50,21 @@ router.route('/')
 		res.json(resp);
 	});
 });
+
+
+function mapRequestToMongooseSchema(body) {
+	let source = "Title, Description, Authors, Pages, Year";
+	let target = "title, description, authors, pages, year";
+	let mappedBook = mapper.map(body, source, target, false);
+
+	mappedBook["authors"] = [];
+	for (var i=0; i<body.Authors.length; i++) {
+		let mappedAuthor = mapper.map(body.Authors[i], "FirstName, LastName", "firstName, lastName", false);
+		mappedBook.authors.push(mappedAuthor);
+	}
+
+	return mappedBook;
+}
 
 
 /* Get specific book */

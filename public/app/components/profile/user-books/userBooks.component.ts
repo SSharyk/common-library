@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { BookModel } from '../../../models/BookModel';
 import { BookService } from '../../../services/book.service';
 import { BookDetailsFormComponent } from '../../book-details-form/bookDetailsForm.component';
+import { BookAddingFormComponent } from '../adding-form/bookAddingForm.component';
 
 @Component({
   selector: 'user-books',
   templateUrl: `./app/components/profile/user-books/userBooks.component.html`,
   styleUrls: ['./app/components/profile/user-books/userBooks.component.css'],
-  directives: [BookDetailsFormComponent],
+  directives: [BookDetailsFormComponent, BookAddingFormComponent],
   providers: [BookService]
 })
 export class UserBooksComponent implements OnInit {
@@ -15,6 +16,7 @@ export class UserBooksComponent implements OnInit {
 	private books: BookModel[];
   private IsSelected: Boolean;
   private SelectedBook: BookModel;
+  private IsCreationCalled: Boolean;
 
 	ngOnInit() {
 		this.loadBooks();
@@ -58,5 +60,28 @@ export class UserBooksComponent implements OnInit {
   closeForm() {
     this.IsSelected = false;
     this.SelectedBook = undefined;
+  }
+
+  showAddingForm() {
+    this.IsCreationCalled = true;
+  }
+
+  closeAddingForm(book: BookModel) {
+    this.IsCreationCalled = false;
+    if (book != null) {
+      this.bookService.createBook(book).subscribe(
+        (resp) => this.bookAddedSuccess(resp),
+        (err)  => this.bookAddedFail(err)
+      );    
+    }
+  }
+
+  bookAddedSuccess(resp) {
+    let book = new BookModel(JSON.parse(resp["_body"]));
+    this.books.push(book);
+  }
+
+  bookAddedFail(err) {
+    console.error(err);
   }
 }

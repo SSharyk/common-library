@@ -1,8 +1,17 @@
 .book-container {
 	opacity: 0.75;
 	cursor: pointer;
+	min-height: 250px;	
 }
 
 .book-container:hover {
 	opacity: 1;
+}
+
+p.book-description {
+	min-height: 85px;
+}
+
+p.book-header {
+	min-height: 60px;
 }

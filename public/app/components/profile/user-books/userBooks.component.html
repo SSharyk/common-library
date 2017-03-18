@@ -1,8 +1,11 @@
 <div class="container">
-	<div class="row">
-		<h1>
-		  {{title}}
-		</h1>
+	<div class="row header-wrapper">
+		<div class="col-md-10">
+			<h1> {{title}} </h1>
+		</div>
+		<div class="col-md-2">
+			<img src='../../../../../images/add.png' (click)="showAddingForm();" />
+		</div>
 	</div>
 </div>
 
@@ -53,3 +56,5 @@
         </div>
     </div>
 </div>
+
+<book-adding-form (onFormClosed)="closeAddingForm($event)" *ngIf="IsCreationCalled"></book-adding-form>
