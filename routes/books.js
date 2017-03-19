@@ -83,16 +83,6 @@ router.route('/:bookId')
 		})
 	});
 })
-.put(function(req, res, next){
-	Books.findByIdAndUpdate(req.params.dishId, {
-		$set: req.body
-	}, {
-		new: true
-	}, function (err, book) {
-		if (err) throw err;
-		res.json(dish);
-	});
-})
 .delete(function(req, res, next) {
 	Books.findByIdAndRemove(req.params.bookId, function (err, resp) { 
 		if (err) throw err;
@@ -100,6 +90,19 @@ router.route('/:bookId')
 	});
 });
 
+
+/* Books of specific user */
+router.get("/ofUser/:login", function(req, res, next) {
+	Users.find({login: req.params.login}, function(err, holder) {
+		if (err) throw err;
+		if (holder == null) throw new Error("User is not found");
+
+		Books.find({holderId: holder[0]._id}, function (err, books) {
+			if (err) throw err;
+			res.json(books);
+		});
+	});
+});
 
 /* Work with comments */
 router.route('/:bookId/comments')
