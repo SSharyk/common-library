@@ -9,7 +9,10 @@ import 'rxjs/Rx';
 @Injectable()
 export class BookService extends HttpHelpers {
 	private _allBooksUrl: string = "book";
+    private _allUserBooksUrl: string = "book/ofUser/";
     private _createBookUrl: string = "book";
+    private _deleteBookUrl: string = "book/";
+    private _updateBookUrl: string = "book/";
 	private _specificBookUrl: string = "book/";
 
 	constructor(private http: Http) {
@@ -18,6 +21,11 @@ export class BookService extends HttpHelpers {
 
     loadBooks() {
         return this.getaction(this._allBooksUrl);
+    }
+
+    loadUserBooks() {
+        let user = JSON.parse(localStorage.getItem("CURRENT_USER_KEY"));
+        return this.getaction(this._allUserBooksUrl + user["Login"]);
     }
 
     getBook(id:String) {
@@ -36,5 +44,14 @@ export class BookService extends HttpHelpers {
         .map(res => {
                 return res;
             });
+    }
+
+    deleteBook(book: BookModel) {
+        return this.deleteaction(this._deleteBookUrl + book.Id);
+    }
+
+    updateBook(book: BookModel) {
+        this.deleteaction(this._deleteBookUrl + book.Id);
+        return this.createBook(book);
     }
 }

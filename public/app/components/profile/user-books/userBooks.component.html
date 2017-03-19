@@ -36,25 +36,5 @@
 	<h3 class="row bok-container" *ngIf="books.length==0"> У Вас еще нет книг </h3>
 </div>
 
-
-<div *ngIf="SelectedBook != undefined && IsSelected"
-     class="modal fade show in danger" id="book-details">
-    <div class="modal-dialog" role="dialog">
-	    <div class="modal-content">
-	    	<div class="modal-header">
-	            <button type="button" class="close navbar-brand" data-dismiss="modal" (click)="closeForm()">&times;</button>
-				<h3> {{SelectedBook?.Title}} </h3>
-			</div>
-
-			<div class="modal-body">	  	
-	  		    <book-details-form [book]="SelectedBook"> Здесь будут отображаться детали книги. Пожалуйста, подождите </book-details-form>
-	  		</div>
-
-			<div class="modal-footer">
-	            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeForm();"> Закрыть</button>
-	        </div>
-        </div>
-    </div>
-</div>
-
-<book-adding-form (onFormClosed)="closeAddingForm($event)" *ngIf="IsCreationCalled"></book-adding-form>
+<book-adding-form *ngIf="SelectedBook != undefined && IsSelected" [book]="SelectedBook" (onFormClosed)="closeAddingForm($event)" (onDeleted)="deleted($event)"></book-adding-form>
+<book-adding-form *ngIf="IsCreationCalled" [book]="null" (onFormClosed)="closeAddingForm($event)"></book-adding-form>

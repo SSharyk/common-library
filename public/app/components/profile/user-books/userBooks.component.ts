@@ -17,6 +17,7 @@ export class UserBooksComponent implements OnInit {
   private IsSelected: Boolean;
   private SelectedBook: BookModel;
   private IsCreationCalled: Boolean;
+  private IsEditing: Boolean;
 
 	ngOnInit() {
 		this.loadBooks();
@@ -26,7 +27,7 @@ export class UserBooksComponent implements OnInit {
   }
 
 	loadBooks() {
-		this.bookService.loadBooks().subscribe(
+		this.bookService.loadUserBooks().subscribe(
             (result) => { 
               var resp = JSON.parse(result["_body"]);
 
@@ -55,6 +56,7 @@ export class UserBooksComponent implements OnInit {
   showBookDetails(book: BookModel) {
     this.SelectedBook = book;    
     this.IsSelected = true;
+    this.IsEditing = true;
   }
 
   closeForm() {
@@ -64,16 +66,28 @@ export class UserBooksComponent implements OnInit {
 
   showAddingForm() {
     this.IsCreationCalled = true;
+    this.IsEditing = false;
   }
 
   closeAddingForm(book: BookModel) {
     this.IsCreationCalled = false;
+    this.IsSelected = false;
     if (book != null) {
-      this.bookService.createBook(book).subscribe(
-        (resp) => this.bookAddedSuccess(resp),
-        (err)  => this.bookAddedFail(err)
-      );    
+      if (this.IsEditing) {
+        // update existing book
+        this.bookService.deleteBook(this.SelectedBook).subscribe(
+          (resp) => this.bookDeletedSuccess(book),
+          (err)  => this.bookAddedFail(err)
+        );
+      } else {
+        // create new book
+        this.bookService.createBook(book).subscribe(
+          (resp) => this.bookAddedSuccess(resp),
+          (err)  => this.bookAddedFail(err)
+        );    
+      }
     }
+    this.IsEditing = false;
   }
 
   bookAddedSuccess(resp) {
@@ -81,7 +95,27 @@ export class UserBooksComponent implements OnInit {
     this.books.push(book);
   }
 
+  bookDeletedSuccess(book) {
+    let index = this.books.indexOf(this.SelectedBook);
+    this.books.splice(index, 1);
+
+    this.bookService.createBook(book).subscribe(
+      (resp) => this.bookAddedSuccess(resp),
+      (err)  => this.bookAddedFail(err)
+    );
+  }
+
   bookAddedFail(err) {
     console.error(err);
+  }
+
+  deleted(isSuccess: Boolean) {
+    if (isSuccess) {
+      let index = this.books.indexOf(this.SelectedBook);
+      this.books.splice(index, 1);
+      this.SelectedBook = null;
+      this.IsEditing = false;
+      this.IsSelected = false;
+    }
   }
 }
