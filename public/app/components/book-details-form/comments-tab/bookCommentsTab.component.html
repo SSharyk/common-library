@@ -1,11 +1,19 @@
 <div class="book-content">
 	<div *ngFor="let c of comments" class="comment-container">
-		<div class="comment-text">
-			<p> {{c.Text}} </p>
+		<div class="comment-text-wrapper">
+			<a class="user-profile-link" href="{{DOMAIN}}/user/{{c.userLogin}}"> {{c.User}} </a>
+			<p class="comment-text"> {{c.Text}} </p>
 		</div>
 	</div>
 
 	<div *ngIf="comments.length==0"> 
 		<p> Еще никто не оставил комментариев к этой книге </p> 
 	</div>
+
+	<form id="CommentForm" [ngFormModel]="_commentForm" class="comment-form">
+     	<div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !CommentControl.valid, 'has-success': CommentControl.valid }">
+            <textarea id="commentTextField" #Comment type="text" ngControl="Comment" placeholder="Введите здесь текст комментария..." class="form-control"> </textarea>
+        </div>
+		<button type="button" (click)="sendComment()" [ngClass]="{'disabled-button': !CommentControl.valid}">=&gt;</button>
+	</form>
 </div>

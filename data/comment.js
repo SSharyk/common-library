@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
-	userId: {
-		type: Schema.ObjectId,
+	userLogin: {
+		type: String,
 		required: true
 	},
 

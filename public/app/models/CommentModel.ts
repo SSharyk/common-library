@@ -2,7 +2,7 @@ export class CommentModel {
 	public Parent: CommentModel;
 	public Children: CommentModel[];
 
-	public constructor(public Id: any, public Text: String, public ParentId: Number) {
+	public constructor(public Id: any, public Text: String, public ParentId: Number, public User: String) {
 		this.Children = [];
 	}
 

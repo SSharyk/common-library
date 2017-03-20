@@ -1,0 +1,27 @@
+.comment-text-wrapper {
+	margin: 5px;
+}
+
+.comment-text {
+	width: 100%;
+}
+
+.user-profile-link {
+	float: right;
+}
+
+.disabled-button {
+	display: none !important;
+}
+
+form.comment-form textarea {
+	width: 80%;
+	float: left;
+}
+
+form.comment-form button {
+	display: inline;
+	float: right;
+	width: 20%;
+	min-height: 55px;
+}
