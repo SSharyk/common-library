@@ -43,8 +43,9 @@ router.get('/login/:login/:password', function(req, res, next) {
 		if (err) throw err;
 
 		if (user != null) {
-			_ticket = ticket.generate(user, {store: true});
-			res.cookie(AUTH_COOKIE_NAME, _ticket["signature"], { maxAge: 900000, httpOnly: true });
+			_ticket = ticket.generate(user, {store: true, expiration: 24});
+			let age = _ticket["expiration"] - new Date();
+			res.cookie(AUTH_COOKIE_NAME, _ticket["signature"], { maxAge: age, httpOnly: true });
 			res.json({
 				status: 200,
 				message: "Поздравляем, вход произведен успешно",
@@ -96,9 +97,9 @@ router.get('/register/:login/:password/:email', function(req, res, next) {
 					};
 					Users.create(userJson, function(err, u) {
 						if (err) throw err;
-
-						_ticket = ticket.generate(u, {store: true});
-						res.cookie(AUTH_COOKIE_NAME, _ticket["signature"], { maxAge: 900000, httpOnly: true });
+						_ticket = ticket.generate(u, {store: true, expiration: 24});
+						let age = _ticket["expiration"] - new Date();					
+						res.cookie(AUTH_COOKIE_NAME, _ticket["signature"], { maxAge: age, httpOnly: true });
 						res.json(u);
 					});
 				}

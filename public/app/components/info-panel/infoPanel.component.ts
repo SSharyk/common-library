@@ -25,6 +25,9 @@ export class InfoPanelComponent implements OnInit {
   private isFormVisible: Boolean;
   private errorMessage: String;
 
+  private static AUTH_COOKIE_NAME = "TICKET_AUTH"
+  private static CURRENT_USER_KEY: string = "CURRENT_USER_KEY";
+
   ngOnInit() {
     this.loadStatistics();
     this.getCurrentUser();
@@ -51,10 +54,16 @@ export class InfoPanelComponent implements OnInit {
   }
 
   getCurrentUser() {
-    this._authService.getCurrentUser().subscribe(
-      (resp) => this.setCurrentUser(resp),
-      (err)  => this.gettingCurrentFailed(err)
-    );
+    let authCookie = this._cookieService.get(InfoPanelComponent.AUTH_COOKIE_NAME);
+    if (authCookie != undefined){
+      this._authService.getCurrentUser().subscribe(
+        (resp) => this.setCurrentUser(resp),
+        (err)  => this.gettingCurrentFailed(err)
+      );
+    } else {
+      this._authService.logout();      
+      localStorage.removeItem(InfoPanelComponent.CURRENT_USER_KEY);      
+    }
   }
 
   setCurrentUser(resp) {
@@ -132,6 +141,7 @@ export class InfoPanelComponent implements OnInit {
   gettingCurrentFailed(err) {
     console.error(err);
     this.loggedUser = null;
+    localStorage.removeItem(InfoPanelComponent.CURRENT_USER_KEY);
     this._authService.setCurrentUser(null);
   }
 
