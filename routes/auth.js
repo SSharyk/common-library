@@ -125,4 +125,14 @@ router.get('/logout', function(req, res, next) {
 	}
 });
 
+router.get('/isValid', function(req, res, next) {
+	if (_ticket != undefined &&
+		ticket.isValid(_ticket)) {
+		res.json({ok: true});
+	} else {
+		res.clearCookie(AUTH_COOKIE_NAME);		
+		res.json({ok: false});
+	}
+})
+
 module.exports = router;

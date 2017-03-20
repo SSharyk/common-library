@@ -16,6 +16,7 @@ export class AuthService extends HttpHelpers {
     private static CURRENT_USER_KEY: string = "CURRENT_USER_KEY";
 
 	private _getCurrentUserUrl: string = "auth/current/";
+    private _isValidUrl: string = "auth/isValid";
 	private _loginUrl: string = "auth/login/{L}/{P}";
     private _registerUrl: string = "auth/register/{L}/{P}/{E}";
     private _logoutUrl: string = "auth/logout";
@@ -49,6 +50,10 @@ export class AuthService extends HttpHelpers {
             localStorage.setItem(AuthService.CURRENT_USER_KEY, JSON.stringify(this._currentUser));
         else
             localStorage.removeItem(AuthService.CURRENT_USER_KEY);
+    }
+
+    isValid() {
+        return this.getaction(this._isValidUrl);
     }
 
     login(login: string, password: string) {

@@ -54,15 +54,21 @@ export class InfoPanelComponent implements OnInit {
   }
 
   getCurrentUser() {
-    let authCookie = this._cookieService.get(InfoPanelComponent.AUTH_COOKIE_NAME);
-    if (authCookie != undefined){
+    this._authService.isValid().subscribe(
+      (resp)=> this.isValidSuccess(resp),
+      (err) => console.error(err)
+    );
+  }
+
+  isValidSuccess(resp) {
+    if (JSON.parse(resp["_body"])["ok"]) {
       this._authService.getCurrentUser().subscribe(
         (resp) => this.setCurrentUser(resp),
         (err)  => this.gettingCurrentFailed(err)
       );
     } else {
-      this._authService.logout();      
-      localStorage.removeItem(InfoPanelComponent.CURRENT_USER_KEY);      
+      localStorage.removeItem(InfoPanelComponent.CURRENT_USER_KEY);
+      this._cookieService.remove(InfoPanelComponent.AUTH_COOKIE_NAME);
     }
   }
 
