@@ -26,7 +26,3 @@ ul.categories-list {
 ul.categories-list > li {
 	font-size: 120%;
 }
-
-.modal-content {
-	background: url('../../../images/old-paper-stains-repeatable-min.jpg') repeat-y;
-}

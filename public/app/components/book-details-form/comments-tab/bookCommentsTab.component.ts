@@ -8,6 +8,7 @@ import { CommentService } from '../../../services/comment.service';
   selector: 'book-comments-tab',
   templateUrl: `./app/components/book-details-form/comments-tab/bookCommentsTab.component.html`,
   styleUrls: [ '../../../../stylesheets/book-styles.css',
+               '../../../../stylesheets/modal-form-styles.css',
                './app/components/book-details-form/comments-tab/bookCommentsTab.component.css'],
   providers: [ CommentService, FormBuilder ],
   directives: [FORM_DIRECTIVES]

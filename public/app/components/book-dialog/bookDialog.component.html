@@ -1,0 +1,22 @@
+<div class="container book-tabs-container">
+	<div class="book-content">
+		<div *ngFor="let c of messages" class="comment-container">
+			<div class="comment-text-wrapper">
+				<a class="user-profile-link" href="{{DOMAIN}}/user/{{c.userLogin}}" *ngIf="c.User!=MY_LOGIN"> {{c.User}} </a>
+				<a class="user-profile-link" href="{{DOMAIN}}/my" *ngIf="c.User==MY_LOGIN">{{MY_LOGIN}}</a>
+				<p class="comment-text"> {{c.Text}} </p>
+			</div>
+		</div>
+
+		<div *ngIf="messages.length==0"> 
+			<p> Вы еще не ведете беседу </p> 
+		</div>
+
+		<form id="MessageForm" [ngFormModel]="_messageForm" class="comment-form">
+	     	<div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !MessageControl.valid, 'has-success': MessageControl.valid }">
+	            <textarea id="messageTextField" #Message type="text" ngControl="Message" placeholder="Введите здесь текст сообщения..." class="form-control"> </textarea>
+	        </div>
+			<button type="button" (click)="sendMessage()" [ngClass]="{'disabled-button': !MessageControl.valid}">=&gt;</button>
+		</form>
+	</div>
+</div>

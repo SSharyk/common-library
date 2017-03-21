@@ -37,7 +37,7 @@
 </div>
 
 
-<div *ngIf="SelectedBook != undefined && IsSelected"
+<div *ngIf="SelectedBook != undefined"
      class="modal fade show in danger" id="book-details">
     <div class="modal-dialog" role="dialog">
 	    <div class="modal-content">
@@ -46,11 +46,15 @@
 				<h3> {{SelectedBook?.Title}} </h3>
 			</div>
 
-			<div class="modal-body">	  	
+			<div class="modal-body" *ngIf="IsSelected && !IsDialog">	  	
 	  		    <book-details-form [book]="SelectedBook"> Здесь будут отображаться детали книги. Пожалуйста, подождите </book-details-form>
+	  		</div>
+			<div class="modal-body" *ngIf="!IsSelected && IsDialog">	  	
+	  		    <book-dialog-form [book]="SelectedBook"> Здесь будут отображаться детали беседы. Пожалуйста, подождите </book-dialog-form>
 	  		</div>
 
 			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" (click)="showDialogForm();" *ngIf="!IsDialog && SelectedBook.User!=MY_LOGIN">Беседовать</button>
 	            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeForm();"> Закрыть</button>
 	        </div>
         </div>

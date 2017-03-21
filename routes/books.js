@@ -6,6 +6,7 @@ var mapper = require('properties-mapper');
 var Books = require('../data/book');
 var Users = require('../data/user');
 var Comments = require('../data/comment');
+var Messages = require('../data/message');
 
 var router = express.Router();
 router.use(bodyParser.json());
@@ -117,6 +118,37 @@ router.route('/:bookId/comments')
 		if (err) throw err;		
 		var id = comment._id;
 		res.json(comment)
+	});
+});
+
+/* Work with private messages */
+router.route('/:bookId/messages/:login')
+.get(function(req, res, next) {
+	let messages = [];
+	let bookId = req.params.bookId;
+	let login = req.params.login;
+
+	Messages.find({bookId: bookId, fromUserLogin: login}, function(err, mess1){
+		if (err) throw err;
+		console.log("mess1");
+		console.log(mess1);
+		messages = mess1;
+		Messages.find({bookId: bookId, toUserLogin: login}, function(err, mess2){
+			if (err) throw err;
+
+			console.log("mess2");
+			console.log(mess2);
+			for (var m in mess2)
+				messages.push(m);
+			res.json(messages);
+		});
+	});
+})
+.post(function(req, res, next) {
+	Messages.create(req.body, function (err, mess) {
+		if (err) throw err;		
+		var id = mess._id;
+		res.json(mess)
 	});
 });
 

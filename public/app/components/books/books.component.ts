@@ -4,12 +4,14 @@ import { SearchModel } from '../../models/SearchModel'
 import { BookService } from '../../services/book.service';
 import { BookItemComponent } from '../book-item/bookItem.component';
 import { BookDetailsFormComponent } from '../book-details-form/bookDetailsForm.component';
+import { BookDialogComponent } from '../book-dialog/bookDialog.component';
 
 @Component({
   selector: 'all-books',
   templateUrl: `./app/components/books/books.component.html`,
-  styleUrls: ['./app/components/books/books.component.css'],
-  directives: [BookItemComponent, BookDetailsFormComponent],
+  styleUrls: [ '../../../../stylesheets/modal-form-styles.css',
+               './app/components/books/books.component.css'],
+  directives: [BookItemComponent, BookDetailsFormComponent, BookDialogComponent],
   providers: [BookService]
 })
 export class BooksComponent implements OnInit {
@@ -17,7 +19,9 @@ export class BooksComponent implements OnInit {
 	private books: BookModel[];
   private search: SearchModel;
   private IsSelected: Boolean;
+  private IsDialog: Boolean;
   private SelectedBook: BookModel;
+  private MY_LOGIN: string = JSON.parse(localStorage.getItem("CURRENT_USER_KEY"))["Login"];
 
 	ngOnInit() {
 		this.loadBooks();
@@ -57,10 +61,21 @@ export class BooksComponent implements OnInit {
   showBookDetails(book: BookModel) {
     this.SelectedBook = book;    
     this.IsSelected = true;
+    this.IsDialog = false;
   }
 
   closeForm() {
+    if (!this.IsDialog) {
+      this.IsSelected = false;
+      this.SelectedBook = undefined;
+    } else {
+      this.IsDialog = false;
+      this.IsSelected = true;
+    }
+  }
+
+  showDialogForm() {
     this.IsSelected = false;
-    this.SelectedBook = undefined;
+    this.IsDialog = true;    
   }
 }
