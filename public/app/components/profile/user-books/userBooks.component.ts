@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { BookModel } from '../../../models/BookModel';
+import { MessageModel } from '../../../models/MessageModel';
 import { BookService } from '../../../services/book.service';
 import { BookDetailsFormComponent } from '../../book-details-form/bookDetailsForm.component';
 import { BookAddingFormComponent } from '../adding-form/bookAddingForm.component';
@@ -18,6 +19,8 @@ export class UserBooksComponent implements OnInit {
   private SelectedBook: BookModel;
   private IsCreationCalled: Boolean;
   private IsEditing: Boolean;
+  private IsDialog: Boolean;
+  private SelectedDialogIndex: Number = 0;
 
 	ngOnInit() {
 		this.loadBooks();
@@ -102,7 +105,7 @@ export class UserBooksComponent implements OnInit {
     this.bookService.createBook(book).subscribe(
       (resp) => this.bookAddedSuccess(resp),
       (err)  => this.bookAddedFail(err)
-    );
+    ); 
   }
 
   bookAddedFail(err) {
@@ -117,5 +120,18 @@ export class UserBooksComponent implements OnInit {
       this.IsEditing = false;
       this.IsSelected = false;
     }
+  }
+
+  showDialogForm(book: BookModel, dialog: MessageModel) {
+    this.SelectedBook = book;
+    this.SelectedDialogIndex = book.Messages.indexOf(dialog);
+    this.IsSelected = false;
+    this.IsDialog = true;
+  }
+
+  closeDialogForm() {
+    this.IsDialog = false;
+    this.IsSelected = false;
+    this.SelectedDialogIndex = 0;
   }
 }

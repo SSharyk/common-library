@@ -1,10 +1,12 @@
 <div class="container book-tabs-container">
 	<div class="book-content">
-		<div *ngFor="let c of messages" class="comment-container">
-			<div class="comment-text-wrapper">
-				<a class="user-profile-link" href="{{DOMAIN}}/user/{{c.userLogin}}" *ngIf="c.User!=MY_LOGIN"> {{c.User}} </a>
-				<a class="user-profile-link" href="{{DOMAIN}}/my" *ngIf="c.User==MY_LOGIN">{{MY_LOGIN}}</a>
-				<p class="comment-text"> {{c.Text}} </p>
+		<div *ngFor="let c of messages; #mesInd=index" class="comment-container">
+			<div class="comment-text-wrapper" *ngFor="let txt of c.Text; #ind=index">
+				<div  *ngIf="mesInd==DialogIndex">
+					<a class="user-profile-link" href="{{DOMAIN}}/user/{{c.FromUserLogin[ind]}}" *ngIf="c.FromUserLogin[ind]!=MY_LOGIN"> {{c.FromUserLogin[ind]}} </a>
+					<a class="user-profile-link" href="{{DOMAIN}}/my" *ngIf="c.FromUserLogin[ind]==MY_LOGIN">{{MY_LOGIN}}</a>
+					<p class="comment-text"> {{txt}} </p>
+				</div>
 			</div>
 		</div>
 

@@ -7,11 +7,11 @@ table {
 	border-spacing: 20px;
 }
 
-table tr {
+div.row.book-container div {
 	opacity: 0.7;
 }
 
-table tr:hover {
+div.row.book-container div:hover {
 	opacity: 1;
 }
 
@@ -22,7 +22,14 @@ table tr:hover {
 	cursor: pointer;
 }
 
-.book-container td.book-title {
+.message-container {
+	margin: +40px;
+	padding: 10px;
+	outline: 2px solid rgba(154, 73, 12, 0.32);
+	cursor: pointer;
+}
+
+.book-container .book-title {
 	font-weight: bold;
 }
 

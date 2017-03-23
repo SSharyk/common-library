@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="books.length>0">
 	<table>
 		<thead class="row">
 			<th class="col-md-6"> Название </th>
@@ -17,24 +17,40 @@
 			<th class="col-md-1"> Год </th>
 			<th class="col-md-1"> Страниц </th>
 		</thead>
-
-		<tbody>
-			<tr class="row book-container" *ngFor="let b of books" (click)="showBookDetails(b);">
-				<td class="col-md-6 book-title"> {{b?.Title}} </td>
-				<td class="col-md-4">
-					<ul class="authors-list">
-						<li class="book-info" *ngFor="let a of b?.Authors"> {{a.FullName}} </li>
-					</ul>
-					<span class="book-info" *ngIf="b?.Authors.length==0"> не указан </span>
-				</td>
-				<td class="col-md-1 book-info"> {{b?.Year}} </td>
-				<td class="col-md-1 book-info"> {{b?.Pages}} </td>
-			</tr>
-		</tbody>
 	</table>
 
-	<h3 class="row bok-container" *ngIf="books.length==0"> У Вас еще нет книг </h3>
-</div>
+	<div class="row book-container" *ngFor="let b of books" (click)="showBookDetails(b);">
+		<div class="col-md-6 book-title"> {{b?.Title}} </div>
+		<div class="col-md-4">
+			<ul class="authors-list">
+				<li class="book-info" *ngFor="let a of b?.Authors"> {{a.FullName}} </li>
+			</ul>
+			<span class="book-info" *ngIf="b?.Authors.length==0"> не указан </span>
+		</div>
+		<div class="col-md-1 book-info"> {{b?.Year}} </div>
+		<div class="col-md-1 book-info"> {{b?.Pages}} </div>
 
-<book-adding-form *ngIf="SelectedBook != undefined && IsSelected" [book]="SelectedBook" (onFormClosed)="closeAddingForm($event)" (onDeleted)="deleted($event)"></book-adding-form>
+		<div class="row message-container" *ngFor="let m of b.Messages" (click)="showDialogForm(b, m);">
+			<p> {{m.getLastMessageText()}} </p>
+		</div>
+	</div>
+</div>
+<h3 class="row bok-container" *ngIf="books.length==0"> У Вас еще нет книг </h3>
+
+<book-adding-form *ngIf="SelectedBook != undefined && !IsDialog && IsSelected" [book]="SelectedBook" (onFormClosed)="closeAddingForm($event)" (onDeleted)="deleted($event)"></book-adding-form>
 <book-adding-form *ngIf="IsCreationCalled" [book]="null" (onFormClosed)="closeAddingForm($event)"></book-adding-form>
+
+<div *ngIf="IsDialog" id="myModal" class="modal fade show in danger" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="closeDialogForm()">&times;</button>
+                <h4 class="modal-title">Беседа</h4>
+            </div>
+
+            <div class="modal-body">
+				<book-dialog-form [book]="SelectedBook" [isPrivateTab]="true" [DialogIndex]="SelectedDialogIndex"></book-dialog-form>
+            </div>
+        </div>
+    </div>
+</div>

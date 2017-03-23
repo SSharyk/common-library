@@ -50,11 +50,11 @@
 	  		    <book-details-form [book]="SelectedBook"> Здесь будут отображаться детали книги. Пожалуйста, подождите </book-details-form>
 	  		</div>
 			<div class="modal-body" *ngIf="!IsSelected && IsDialog">	  	
-	  		    <book-dialog-form [book]="SelectedBook"> Здесь будут отображаться детали беседы. Пожалуйста, подождите </book-dialog-form>
+	  		    <book-dialog-form [book]="SelectedBook" [isPrivateTab]="false" [DialogIndex]="0"> Здесь будут отображаться детали беседы. Пожалуйста, подождите </book-dialog-form>
 	  		</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal" (click)="showDialogForm();" *ngIf="!IsDialog && SelectedBook.User!=MY_LOGIN">Беседовать</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" (click)="showDialogForm();" *ngIf="!IsDialog && MY_LOGIN!=null && MY_LOGIN!=undefined && MY_LOGIN!='' && SelectedBook.User!=MY_LOGIN">Беседовать</button>
 	            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeForm();"> Закрыть</button>
 	        </div>
         </div>

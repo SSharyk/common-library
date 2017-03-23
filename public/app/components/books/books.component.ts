@@ -21,7 +21,7 @@ export class BooksComponent implements OnInit {
   private IsSelected: Boolean;
   private IsDialog: Boolean;
   private SelectedBook: BookModel;
-  private MY_LOGIN: string = JSON.parse(localStorage.getItem("CURRENT_USER_KEY"))["Login"];
+  private MY_LOGIN: string;
 
 	ngOnInit() {
 		this.loadBooks();
@@ -29,6 +29,8 @@ export class BooksComponent implements OnInit {
 	constructor (private bookService: BookService) {
 		this.books = [];
     this.search = new SearchModel();
+    this.MY_LOGIN = (localStorage.getItem("CURRENT_USER_KEY") != null)
+			? JSON.parse(localStorage.getItem("CURRENT_USER_KEY"))["Login"] : "";
 	}
 
 	loadBooks() {

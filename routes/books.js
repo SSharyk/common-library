@@ -77,9 +77,22 @@ router.route('/:bookId')
 		Users.findById(book.holderId, function(err, user) {
 			if (err) throw err;
 
-			res.json({
-				book: book,
-				user: user,
+			let messages = [];
+			Messages.find({bookId: req.params.bookId, fromUserLogin: user.login}, function(err, mess1){
+				if (err) throw err;
+				messages = mess1;
+				Messages.find({bookId: req.params.bookId, toUserLogin: user.login}, function(err, mess2){
+					if (err) throw err;
+					for (var i=0; i<mess2.length; i++) {
+						messages.push(mess2[i]);
+					}
+					messages = messages.sort(dateSorting);
+					res.json({
+						book: book,
+						user: user,
+						messages: messages
+					});
+				});
 			});
 		})
 	});
@@ -130,16 +143,14 @@ router.route('/:bookId/messages/:login')
 
 	Messages.find({bookId: bookId, fromUserLogin: login}, function(err, mess1){
 		if (err) throw err;
-		console.log("mess1");
-		console.log(mess1);
 		messages = mess1;
 		Messages.find({bookId: bookId, toUserLogin: login}, function(err, mess2){
 			if (err) throw err;
 
-			console.log("mess2");
-			console.log(mess2);
 			for (var m in mess2)
 				messages.push(m);
+
+			messages = messages.sort(dateSorting);
 			res.json(messages);
 		});
 	});
@@ -151,5 +162,11 @@ router.route('/:bookId/messages/:login')
 		res.json(mess)
 	});
 });
+
+function dateSorting(a, b) {
+	if (a["createdAt"] > b["createdAt"]) return 1;
+	if (a["createdAt"] < b["createdAt"]) return -1;
+	return 0;
+}
 
 module.exports = router;
