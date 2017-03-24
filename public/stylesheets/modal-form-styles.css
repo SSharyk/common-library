@@ -1,5 +1,8 @@
 .modal-content {
 	background: url('../../../images/old-paper-stains-repeatable-min.jpg') repeat-y;
+}
+
+.modal-body {
 	overflow-y: auto;
 	max-height: 70%;
 }

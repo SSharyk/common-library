@@ -1,7 +1,9 @@
 <div class="book-content">
 	<p> <i> {{book?.Author?.FullName}} </i> </p>
 	<p class="book-description"> {{book?.Description}} </p>
-	<p> Принадлежит: <a href='{{DOMAIN}}/user/{{book?.User}}'> {{book?.User}} </a> </p>
+	<p> Принадлежит: <span class="book-holder" (click)="toggleUserData();"> {{book?.User}} </span> </p>
+
+	<user-data *ngIf="IsUserSelected" [user]="user"> User's data here </user-data>
 
 	<div class="book-footer">
 		<div class="book-year"> {{book?.Year}} </div>

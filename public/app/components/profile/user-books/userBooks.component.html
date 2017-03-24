@@ -51,6 +51,10 @@
             <div class="modal-body">
 				<book-dialog-form [book]="SelectedBook" [isPrivateTab]="true" [DialogIndex]="SelectedDialogIndex"></book-dialog-form>
             </div>
+
+			 <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeDialogForm();"> Закрыть</button>
+            </div>
         </div>
     </div>
 </div>

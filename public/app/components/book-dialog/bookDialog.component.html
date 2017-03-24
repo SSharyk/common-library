@@ -3,17 +3,18 @@
 		<div *ngFor="let c of messages; #mesInd=index" class="comment-container">
 			<div class="comment-text-wrapper" *ngFor="let txt of c.Text; #ind=index">
 				<div  *ngIf="mesInd==DialogIndex">
-					<a class="user-profile-link" href="{{DOMAIN}}/user/{{c.FromUserLogin[ind]}}" *ngIf="c.FromUserLogin[ind]!=MY_LOGIN"> {{c.FromUserLogin[ind]}} </a>
-					<a class="user-profile-link" href="{{DOMAIN}}/my" *ngIf="c.FromUserLogin[ind]==MY_LOGIN">{{MY_LOGIN}}</a>
+					<p class="user-profile-link" *ngIf="c.FromUserLogin[ind]!=MY_LOGIN" (click)="toggleUserData(c.FromUserLogin[ind]);"> {{c.FromUserLogin[ind]}} </p>
+					<p class="user-profile-link" *ngIf="c.FromUserLogin[ind]==MY_LOGIN" (click)="toggleUserData(c.FromUserLogin[ind]);">{{MY_LOGIN}}</p>
 					<p class="comment-text"> {{txt}} </p>
 				</div>
 			</div>
 		</div>
-
 		<div *ngIf="messages.length==0"> 
 			<p> Вы еще не ведете беседу </p> 
 		</div>
 
+		<user-data *ngIf="selectedUser!=null" [user]="selectedUser"> User's data here </user-data>
+		
 		<form id="MessageForm" [ngFormModel]="_messageForm" class="comment-form">
 	     	<div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !MessageControl.valid, 'has-success': MessageControl.valid }">
 	            <textarea id="messageTextField" #Message type="text" ngControl="Message" placeholder="Введите здесь текст сообщения..." class="form-control"> </textarea>

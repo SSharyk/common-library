@@ -18,12 +18,11 @@ router.route('/')
 	})
 });
 
-router.route('/:userId')
+router.route('/:login')
 .get(function(req, res, next){
-	console.log("GET user with id = ${req.params.userId}");
-	Users.findById(req.params.userId, function(err, user){
+	Users.find({login: req.params.login}, function(err, user){
 		if (err) throw err;
-		res.json(user);
+		res.json(user[0]);
 	})
 });
 

@@ -2,13 +2,16 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Control, ControlGroup, FormBuilder, Validators, FORM_DIRECTIVES  } from "@angular/common";
 import { BookModel } from '../../models/BookModel';
 import { MessageModel } from '../../models/MessageModel';
+import { UserModel } from '../../models/UserModel';
+import { UserService } from '../../services/user.service';
 import { MessagesService } from '../../services/messages.service';
 
 @Component({
   selector: 'book-dialog-form',
   templateUrl: `./app/components/book-dialog/bookDialog.component.html`,
-  styleUrls: [ '../../../../stylesheets/book-styles.css',
-               '../../../../stylesheets/modal-form-styles.css',  
+  styleUrls: [ '../../../stylesheets/popup.css',  
+               '../../../stylesheets/book-styles.css',  
+               '../../../stylesheets/modal-form-styles.css',
                './app/components/book-dialog/bookDialog.component.css'],
   providers: [ MessagesService, FormBuilder ],
   directives: [FORM_DIRECTIVES]
@@ -24,6 +27,7 @@ export class BookDialogComponent implements OnInit {
   @Input() public title: String;
   private messages: MessageModel[];
   private MY_LOGIN: String;
+  private selectedUser: UserModel = null;
 
   ngOnInit(){
     this.MY_LOGIN = (localStorage.getItem("CURRENT_USER_KEY") != null)
@@ -40,7 +44,8 @@ export class BookDialogComponent implements OnInit {
   }
 
   constructor(private _formBuilder: FormBuilder,
-              private _messagesService: MessagesService){
+              private _messagesService: MessagesService,
+              private _userService: UserService){
     this.messages = [];    
   }
 
@@ -94,5 +99,26 @@ export class BookDialogComponent implements OnInit {
 			? JSON.parse(localStorage.getItem("CURRENT_USER_KEY"))["Login"] : "";   
     return (item.FromUserLogin.indexOf(my) != -1 ||
             item.ToUserLogin.indexOf(my) != -1);
+  }
+
+  toggleUserData(userLogin) {
+    if (this.selectedUser == null || this.selectedUser.Login != userLogin) {
+      this._userService.getUser(userLogin).subscribe(
+          (resp) => this.userLoadedSuccess(resp),
+          (err) => this.userLoadedFail(err)
+      );
+    } else {
+      this.selectedUser = null;
+    }
+  }
+
+  userLoadedSuccess(resp) {
+      let body = JSON.parse(resp["_body"]);
+      this.selectedUser = new UserModel(body);
+      console.log(this.selectedUser);
+  }
+
+  userLoadedFail(err) {
+      console.error(err);
   }
 }

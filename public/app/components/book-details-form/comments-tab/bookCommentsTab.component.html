@@ -1,10 +1,12 @@
 <div class="book-content">
 	<div *ngFor="let c of comments" class="comment-container">
 		<div class="comment-text-wrapper">
-			<a class="user-profile-link" href="{{DOMAIN}}/user/{{c.userLogin}}"> {{c.User}} </a>
+			<p class="user-profile-link" (click)="toggleUserData(c.User);"> {{c.User}} </p>
 			<p class="comment-text"> {{c.Text}} </p>
 		</div>
 	</div>
+
+	<user-data *ngIf="selectedUser!=null" [user]="selectedUser"> User's data here </user-data>
 
 	<div *ngIf="comments.length==0"> 
 		<p> Еще никто не оставил комментариев к этой книге </p> 

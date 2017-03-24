@@ -18,7 +18,7 @@ export class UserService extends HttpHelpers {
     	return this.getaction(this._allUsersUrl);
     }
 
-    getUser(id: string) {
-        return this.getaction(this._specificUserUrl + id);
+    getUser(login: String) {
+        return this.getaction(this._specificUserUrl + login);
     }
 }

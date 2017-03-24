@@ -15,3 +15,7 @@ p.book-description {
 p.book-header {
 	min-height: 60px;
 }
+
+span.book-holder {
+	float: right;
+}

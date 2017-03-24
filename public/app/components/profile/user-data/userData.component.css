@@ -1,0 +1,14 @@
+.dropDownWrapper #user-dropdown {
+        margin-right: 30px;
+    }
+
+.user-container {
+    margin: 50px;
+    padding: 30px;
+    border: 2px solid #a34804;
+    border-radius: 9px;
+}
+
+.user-container .field-value {
+    font-style: italic;
+}

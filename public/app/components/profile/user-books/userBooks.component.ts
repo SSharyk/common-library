@@ -8,7 +8,8 @@ import { BookAddingFormComponent } from '../adding-form/bookAddingForm.component
 @Component({
   selector: 'user-books',
   templateUrl: `./app/components/profile/user-books/userBooks.component.html`,
-  styleUrls: ['./app/components/profile/user-books/userBooks.component.css'],
+  styleUrls: [  '../../../../stylesheets/modal-form-styles.css',
+                './app/components/profile/user-books/userBooks.component.css'],
   directives: [BookDetailsFormComponent, BookAddingFormComponent],
   providers: [BookService]
 })

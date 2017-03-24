@@ -12,7 +12,8 @@ var md5 = require('js-md5');
 @Component({
   selector: 'info-panel',
   templateUrl: `./app/components/info-panel/infoPanel.component.html`,
-  styleUrls: ['./app/components/info-panel/infoPanel.component.css'],
+  styleUrls: [  '../../../stylesheets/popup-styles.css',
+                './app/components/info-panel/infoPanel.component.css'],
   providers: [InfoService, CookieService, AuthService],
   directives: [ClickOutsideDirective]
 })

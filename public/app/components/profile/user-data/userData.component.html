@@ -1,0 +1,9 @@
+<!-- Account drop-down menu -->
+<div class="user-container">
+    <p> Логин: <span class="field-value"> {{user.Login}} </span> </p>
+    <p> Email: <span class="field-value"> {{user.Email}} </span> </p>
+     Адреса:
+    <ul>
+        <li class="field-value" *ngFor="let addr of user.Addresses"> {{addr}} </li>
+    </ul>
+</div>

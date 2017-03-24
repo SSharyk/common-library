@@ -1,0 +1,6 @@
+.user-profile-link {
+    float: right;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #a34804;
+}

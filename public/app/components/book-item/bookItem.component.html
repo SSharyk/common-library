@@ -4,7 +4,7 @@
 	<div class="book-content">
 		<i *ngFor="let author of book?.Authors"> | {{author?.FullName}} </i>
 		<p class="book-description"> {{ShortDescription}} </p>
-		<p> Принадлежит: <a href='{{DOMAIN}}/user/{{book?.User}}'> {{book?.User}} </a> </p>
+		<p> Принадлежит: {{book?.User}} </p>
 
 		<div class="book-footer">
 			<div class="book-year"> {{book?.Year}} </div>

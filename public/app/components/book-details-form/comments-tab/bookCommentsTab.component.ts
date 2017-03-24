@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Control, ControlGroup, FormBuilder, Validators, FORM_DIRECTIVES  } from "@angular/common";
 import { BookModel } from '../../../models/BookModel';
 import { CommentModel } from '../../../models/CommentModel';
+import { UserModel } from '../../../models/UserModel';
+import { UserService } from '../../../services/user.service';
 import { CommentService } from '../../../services/comment.service';
 
 @Component({
@@ -9,15 +11,16 @@ import { CommentService } from '../../../services/comment.service';
   templateUrl: `./app/components/book-details-form/comments-tab/bookCommentsTab.component.html`,
   styleUrls: [ '../../../../stylesheets/book-styles.css',
                '../../../../stylesheets/modal-form-styles.css',
+               '../../../../stylesheets/popup-styles.css',
                './app/components/book-details-form/comments-tab/bookCommentsTab.component.css'],
-  providers: [ CommentService, FormBuilder ],
+  providers: [ CommentService, FormBuilder, UserService ],
   directives: [FORM_DIRECTIVES]
 })
 export class BookCommentsTabComponent implements OnInit {
   DOMAIN: String = "http://localhost:4242";
   private _commentForm: ControlGroup;
   private CommentControl:Control;
-
+  private selectedUser: UserModel = null;
 
   @Input()
   public book : BookModel;
@@ -33,7 +36,8 @@ export class BookCommentsTabComponent implements OnInit {
   }
 
   constructor(private _formBuilder: FormBuilder,
-              private _commentService: CommentService){
+              private _commentService: CommentService,
+              private _userService: UserService){
   	this.comments = [];
   }
 
@@ -74,5 +78,25 @@ export class BookCommentsTabComponent implements OnInit {
 
   commentAddedFailed(err) {
     console.error(err);
+  }
+
+  toggleUserData(userLogin) {
+    if (this.selectedUser == null || this.selectedUser.Login != userLogin) {
+      this._userService.getUser(userLogin).subscribe(
+          (resp) => this.userLoadedSuccess(resp),
+          (err) => this.userLoadedFail(err)
+      );
+    } else {
+      this.selectedUser = null;
+    }
+  }
+
+  userLoadedSuccess(resp) {
+      let body = JSON.parse(resp["_body"]);
+      this.selectedUser = new UserModel(body);
+  }
+
+  userLoadedFail(err) {
+      console.error(err);
   }
 }
