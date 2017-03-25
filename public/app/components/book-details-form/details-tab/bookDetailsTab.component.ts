@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BookModel } from '../../../models/BookModel';
 import { UserModel } from '../../../models/UserModel';
 import { UserService } from '../../../services/user.service';
+import { HistoryService } from '../../../services/history.service';
 import { UserDataComponent } from '../../profile/user-data/userData.component';
 
 @Component({
@@ -10,7 +11,8 @@ import { UserDataComponent } from '../../profile/user-data/userData.component';
   styleUrls: [ '../../../../stylesheets/book-styles.css',
                '../../../../stylesheets/popup-styles.css',
                './app/components/book-details-form/details-tab/bookDetailsTab.component.css'],
-  directives: [UserDataComponent],               
+  directives: [UserDataComponent],   
+  providers: [HistoryService]            
 })
 export class BookDetailsTabComponent implements OnInit {
   @Input()

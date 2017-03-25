@@ -13,7 +13,7 @@
 			<p> Вы еще не ведете беседу </p> 
 		</div>
 
-		<user-data *ngIf="selectedUser!=null" [user]="selectedUser"> User's data here </user-data>
+		<user-data *ngIf="selectedUser!=null" [user]="selectedUser" [book]="book"> User's data here </user-data>
 		
 		<form id="MessageForm" [ngFormModel]="_messageForm" class="comment-form">
 	     	<div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !MessageControl.valid, 'has-success': MessageControl.valid }">

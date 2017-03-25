@@ -5,6 +5,7 @@ import { CommentModel } from '../../../models/CommentModel';
 import { UserModel } from '../../../models/UserModel';
 import { UserService } from '../../../services/user.service';
 import { CommentService } from '../../../services/comment.service';
+import { HistoryService } from '../../../services/history.service';
 
 @Component({
   selector: 'book-comments-tab',
@@ -13,7 +14,7 @@ import { CommentService } from '../../../services/comment.service';
                '../../../../stylesheets/modal-form-styles.css',
                '../../../../stylesheets/popup-styles.css',
                './app/components/book-details-form/comments-tab/bookCommentsTab.component.css'],
-  providers: [ CommentService, FormBuilder, UserService ],
+  providers: [ CommentService, FormBuilder, UserService, HistoryService ],
   directives: [FORM_DIRECTIVES]
 })
 export class BookCommentsTabComponent implements OnInit {

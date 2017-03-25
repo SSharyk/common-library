@@ -17,6 +17,7 @@ var books = require('./routes/books');
 var users = require('./routes/users');
 var stat = require('./routes/stat');
 var auth = require('./routes/auth');
+var history = require('./routes/history');
 var routerC = require('./routes/routerC')
 
 
@@ -52,6 +53,7 @@ app.use('/book/', books);
 app.use('/user/', users);
 app.use('/stat/', stat);
 app.use('/auth/', auth);
+app.use('/history/', history);
 app.use('/routerC/', routerC);
 
 

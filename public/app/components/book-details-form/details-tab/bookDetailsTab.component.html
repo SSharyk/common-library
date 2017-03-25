@@ -3,7 +3,7 @@
 	<p class="book-description"> {{book?.Description}} </p>
 	<p> Принадлежит: <span class="book-holder" (click)="toggleUserData();"> {{book?.User}} </span> </p>
 
-	<user-data *ngIf="IsUserSelected" [user]="user"> User's data here </user-data>
+	<user-data *ngIf="IsUserSelected" [user]="user" [book]="book"> User's data here </user-data>
 
 	<div class="book-footer">
 		<div class="book-year"> {{book?.Year}} </div>

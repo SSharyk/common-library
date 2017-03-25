@@ -6,4 +6,6 @@
     <ul>
         <li class="field-value" *ngFor="let addr of user.Addresses"> {{addr}} </li>
     </ul>
+    <button class="transfers-button" *ngIf="isMayBeTransferred" type="button" (click)="transferBook();"> Передать книгу </button>
+    <button class="transfers-button" *ngIf="isMayBeConfirmed" type="button" (click)="confirmBook();"> Подтвердить передачу </button>    
 </div>

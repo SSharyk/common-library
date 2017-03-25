@@ -4,6 +4,7 @@ import { BookModel } from '../../models/BookModel';
 import { MessageModel } from '../../models/MessageModel';
 import { UserModel } from '../../models/UserModel';
 import { UserService } from '../../services/user.service';
+import { HistoryService } from '../../services/history.service';
 import { MessagesService } from '../../services/messages.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { MessagesService } from '../../services/messages.service';
                '../../../stylesheets/book-styles.css',  
                '../../../stylesheets/modal-form-styles.css',
                './app/components/book-dialog/bookDialog.component.css'],
-  providers: [ MessagesService, FormBuilder ],
+  providers: [ MessagesService, FormBuilder, HistoryService ],
   directives: [FORM_DIRECTIVES]
 })
 export class BookDialogComponent implements OnInit {
@@ -115,7 +116,6 @@ export class BookDialogComponent implements OnInit {
   userLoadedSuccess(resp) {
       let body = JSON.parse(resp["_body"]);
       this.selectedUser = new UserModel(body);
-      console.log(this.selectedUser);
   }
 
   userLoadedFail(err) {

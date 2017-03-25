@@ -6,7 +6,7 @@
 		</div>
 	</div>
 
-	<user-data *ngIf="selectedUser!=null" [user]="selectedUser"> User's data here </user-data>
+	<user-data *ngIf="selectedUser!=null" [user]="selectedUser" [book]="book"> User's data here </user-data>
 
 	<div *ngIf="comments.length==0"> 
 		<p> Еще никто не оставил комментариев к этой книге </p> 
