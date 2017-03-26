@@ -21,6 +21,29 @@ router.get('/get', function(req, res, next){
     })
 });
 
+router.get('/ofUser/:userLogin', function(req, res, next) {
+    let userLogin = req.params.userLogin;
+    let result = [];
+    History.find({fromUserLogin: userLogin}, function(err, hItems1) {
+        if (err) throw err;
+        result = hItems1;
+
+        History.find({toUserLogin: userLogin}, function(err, hItems2) {
+            if (err) throw err;
+            if (hItems2.length == 0) {
+                res.json(result);
+            } else {
+                for (var i=0; i<hItems2.length; i++) {
+                    result.push(hItems2[i]);
+                    if (i == hItems2.length - 1) {
+                        res.json(result);
+                    }
+                } 
+            }
+        });
+    });
+})
+
 router.get('/transfer', function(req, res, next) {
     let from = req.query.from;
     let to = req.query.to;

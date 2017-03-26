@@ -54,8 +54,8 @@ router.route('/')
 
 
 function mapRequestToMongooseSchema(body) {
-	let source = "Title, Description, Authors, Pages, Year";
-	let target = "title, description, authors, pages, year";
+	let source = "Id, Title, Description, Authors, Pages, Year";
+	let target = "_id, title, description, authors, pages, year";
 	let mappedBook = mapper.map(body, source, target, false);
 
 	mappedBook["authors"] = [];

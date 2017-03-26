@@ -1,0 +1,39 @@
+table {
+    border: 1px solid #8c1500;
+    table-layout: fixed;
+    width: 90%;
+    margin: 5%;
+}
+
+table *:not(span){
+    border: 1px solid #8c1500;
+}
+
+td p, td div {
+    border: none !important;
+}
+
+thead {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+tbody {
+    color: #5a5857;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: left;
+    max-width: 76%;  
+}
+
+td.column p {
+    padding: 10px;
+}
+
+.column-book-title {
+    width: 35%;
+}
+
+.column-message {
+    width: 65%;
+}

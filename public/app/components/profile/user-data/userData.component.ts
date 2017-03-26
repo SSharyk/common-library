@@ -61,7 +61,7 @@ export class UserDataComponent{
             return;
         }
 
-        this.lastHistory = new HistoryModel(body[body.length - 1]);
+        this.lastHistory = new HistoryModel(body[body.length - 1], this._bookService);
 
         this.isMayBeTransferred = 
                 this.isMayBeTransferred && 

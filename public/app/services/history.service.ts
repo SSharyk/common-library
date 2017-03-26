@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class HistoryService extends HttpHelpers {
     private _getBookHistoryUrl: string = "history/get?id={ID}&from={F}";
+    private _getUserHistoryUrl: string = "history/ofUser/";
 	private _transferBookUrl: string = "history/transfer?id={ID}&from={F}&to={T}&status={S}";
 
 	constructor(private http: Http) {
@@ -19,6 +20,10 @@ export class HistoryService extends HttpHelpers {
                         .replace("{ID}", bookId)
                         .replace("{F}", fromLogin);
         return this.getaction(url);
+    }
+
+    getAll(userLogin) {
+        return this.getaction(this._getUserHistoryUrl + userLogin);
     }
 
     transferBook(bookId, from, to) {

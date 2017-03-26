@@ -170,11 +170,14 @@ export class InfoPanelComponent implements OnInit {
   }
 
   toMain() {
-    console.log("to main");
     this._router.navigate(['./']);
   }
   
   showMyBooks() {
     this._router.navigate(['./my']);
+  }
+
+  showHistory() {
+    this._router.navigate(['./histories']);
   }
 }
