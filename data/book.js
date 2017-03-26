@@ -37,22 +37,7 @@ var bookSchema = new Schema({
 		required: true
 	},
 
-	// firstCommentId: {
-	// 	type: Schema.ObjectId,
-	// 	required: true
-	// },
-
-	// comments: [{ type : Schema.ObjectId, ref: 'Comment' }],
-
-	//holder: userSchema,
-	///author: [authorSchema],
-	//comment: commentSchema,
-
-	suggestions: {
-		type: Number,
-		min: 0,
-		default: 0
-	}
+	comments: [{ type : Schema.ObjectId, ref: 'Comment' }],
 },
 	{
 		timestamps: true

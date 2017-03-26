@@ -7,12 +7,6 @@ var commentSchema = new Schema({
 		required: true
 	},
 
-	parentId: {
-		type: Schema.ObjectId,
-		required: false
-	},
-
-	//children: [{ type : Schema.ObjectId, ref: 'Comment' }],
 	bookId: {
 		type: Schema.ObjectId,
 		required: true

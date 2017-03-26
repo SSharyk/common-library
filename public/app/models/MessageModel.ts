@@ -18,4 +18,8 @@ export class MessageModel {
 	getLastMessageText() {
 		return this.Text[this.Text.length - 1];
 	}
+
+	getLastMessageAuthor() {
+		return this.FromUserLogin[this.FromUserLogin.length - 1];
+	}
 }

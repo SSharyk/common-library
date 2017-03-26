@@ -8,9 +8,9 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-4 book-wrapper" *ngFor="let b of books">
+				<div class="col-md-3 book-wrapper" *ngFor="let b of pageBooks">
 					<book-item 
 						[book]="b"
 						(click)="showBookDetails(b)"> book </book-item>
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-3">
+		<!--<div class="col-md-3">
 			<h2 class="search-header"> Поиск книг </h2>
 			
 			<form name="search">
@@ -33,7 +33,7 @@
 				<li> Философия </li>
 			</ul>
 		</div>
-	</div>
+	</div>-->
 </div>
 
 
@@ -60,3 +60,13 @@
         </div>
     </div>
 </div>
+
+<table class="pagination-container">
+	<tr>
+		<td (click)="changePage(0);"> &#171; </td>
+		<td (click)="changePage(selectedPage-1);"> &lt; </td>
+		<td *ngFor="let i of pageNumbers" (click)="changePage(i);"> {{i+1}} </td>
+		<td (click)="changePage(selectedPage+1);"> &gt; </td>
+		<td (click)="changePage(null);"> &#187; </td>
+	</tr>
+</table>

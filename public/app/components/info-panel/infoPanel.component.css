@@ -95,7 +95,8 @@ form label.form-label {
     margin: 5px;
 }
 
-form input {
+form input,
+form textarea {
     width: 90%;
     margin: 10px 5%;
 }

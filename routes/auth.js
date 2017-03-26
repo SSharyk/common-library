@@ -63,7 +63,7 @@ router.get('/login/:login/:password', function(req, res, next) {
 	});
 });
 
-router.get('/register/:login/:password/:email', function(req, res, next) {
+router.get('/register/:login/:password/:email/:addresses', function(req, res, next) {
 	if (req.headers.cookie.indexOf(AUTH_COOKIE_NAME) != -1 &&
 		ticket.isValid(_ticket)) {
 		res.json({
@@ -89,11 +89,12 @@ router.get('/register/:login/:password/:email', function(req, res, next) {
 						message: "Пользователь с таким email уже существует в системе"
 					});
 				} else {
+					let addresses = splitAddressString(req.params.addresses);
 					var userJson = {
 						login: req.params.login,
 						password: req.params.password,
 						email: req.params.email,
-						address: []
+						address: addresses
 					};
 					Users.create(userJson, function(err, u) {
 						if (err) throw err;
@@ -107,6 +108,21 @@ router.get('/register/:login/:password/:email', function(req, res, next) {
 		}
 	});
 });
+
+function splitAddressString(addrString) {
+	let items = addrString.split(";");
+	let result = [];
+	for (var i=0; i<items.length; i++) {
+		let components = items[i].split(",");
+		let oneAddr = {
+			town: components[0] || '',
+			street: components[1] || '',
+			house: components[2] || ''
+		};
+		result.push(oneAddr);
+	}
+	return result;
+}
 
 router.get('/logout', function(req, res, next) {
 	if (req.headers.cookie.indexOf(AUTH_COOKIE_NAME) != -1 &&

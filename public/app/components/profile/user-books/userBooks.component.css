@@ -40,3 +40,11 @@ div.row.book-container div:hover {
 .header-wrapper img {
 	cursor: pointer;
 }
+
+.message-text {
+	float: left;
+}
+
+.message-author {
+	float: right;
+}

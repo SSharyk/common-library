@@ -23,7 +23,6 @@
         	<div *ngIf="!(loggedUser!=undefined && loggedUser!=null)">
 	            <a class="unselectable" (click)="showLoginForm(false)"><b>Войти</b></a>
 	            <a class="unselectable" (click)="showLoginForm(true)"><b>Регистрация</b></a>
-	            <a class="unselectable" (click)="showHelpPopUp()"><b>Помощь</b></a>
 	        </div>
 
 	        <div *ngIf="loggedUser!=undefined && loggedUser!=null">
@@ -53,6 +52,10 @@
 					<label class="form-label" for="email">Адрес электронной почты:</label> 
 					<input type="email" name="email" placeholder="Например, fakeUser@gmail.com" id="fieldEmail" />
 				</div>
+				<div class="form-field-wrapper" *ngIf="isRegistration">
+					<label class="form-label" for="addresses"> Адрес(а): </label>
+					<textarea name="addresses" placeholder="Адреса: город, улица, дом" id="fieldAddresses"> </textarea>
+				</div>				
 				<button *ngIf="!isRegistration" (click)="login(); hideLoginForm();">Войти</button>
 				<button *ngIf="isRegistration" (click)="register(); hideLoginForm();">Создать аккаунт</button>
 				<button (click)="hideLoginForm()">Отмена</button>

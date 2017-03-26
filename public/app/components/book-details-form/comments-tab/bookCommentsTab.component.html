@@ -12,7 +12,7 @@
 		<p> Еще никто не оставил комментариев к этой книге </p> 
 	</div>
 
-	<form id="CommentForm" [ngFormModel]="_commentForm" class="comment-form">
+	<form *ngIf="MY_LOGIN.length>0" id="CommentForm" [ngFormModel]="_commentForm" class="comment-form">
      	<div [ngClass]="{'form-group': true, 'has-feedback': true, 'has-error': !CommentControl.valid, 'has-success': CommentControl.valid }">
             <textarea id="commentTextField" #Comment type="text" ngControl="Comment" placeholder="Введите здесь текст комментария..." class="form-control"> </textarea>
         </div>

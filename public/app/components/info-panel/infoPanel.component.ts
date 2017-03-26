@@ -128,8 +128,9 @@ export class InfoPanelComponent implements OnInit {
     let login = (document.getElementById("fieldLogin") as HTMLInputElement).value;
     let password = (document.getElementById("fieldPassword") as HTMLInputElement).value;
     let email = (document.getElementById("fieldEmail") as HTMLInputElement).value;
+    let addresses = (document.getElementById("fieldAddresses") as HTMLInputElement).value;
 
-    this._authService.register(login, md5(password), email).subscribe(
+    this._authService.register(login, md5(password), email, addresses).subscribe(
       (resp) => this.setCurrentUser(resp),
       (err)  => this.registerFailed(err)
     );    

@@ -17,17 +17,24 @@ import { BookDialogComponent } from '../book-dialog/bookDialog.component';
 export class BooksComponent implements OnInit {
 	title = 'Ваша общая библиотека';
 	private books: BookModel[];
+  private pageBooks: BookModel[];
   private search: SearchModel;
   private IsSelected: Boolean;
   private IsDialog: Boolean;
   private SelectedBook: BookModel;
   private MY_LOGIN: string;
+  private static BOOKS_PER_PAGE: number = 10;
+  private selectedPage: number;
+  private pageNumbers: number[];
 
 	ngOnInit() {
 		this.loadBooks();
 	}
 	constructor (private bookService: BookService) {
 		this.books = [];
+    this.pageBooks = [];
+    this.pageNumbers = [];
+    this.selectedPage = 0;
     this.search = new SearchModel();
     this.MY_LOGIN = (localStorage.getItem("CURRENT_USER_KEY") != null)
 			? JSON.parse(localStorage.getItem("CURRENT_USER_KEY"))["Login"] : "";
@@ -36,6 +43,9 @@ export class BooksComponent implements OnInit {
 	loadBooks() {
 		this.bookService.loadBooks().subscribe(
             (result) => { 
+              this.books = [];
+              this.pageBooks = [];
+              this.pageNumbers = [];
               var resp = JSON.parse(result["_body"]);
 
               /// TODO: use Mongoose population
@@ -53,6 +63,13 @@ export class BooksComponent implements OnInit {
         var res = JSON.parse(resp["_body"]);
         var book = new BookModel(res);
         this.books.push(book);
+        if (this.books.length > this.selectedPage*BooksComponent.BOOKS_PER_PAGE &&
+            this.books.length <= (this.selectedPage+1)*BooksComponent.BOOKS_PER_PAGE) {
+              this.pageBooks.push(book);
+            }
+        if (this.books.length - 1 % BooksComponent.BOOKS_PER_PAGE == 0) {
+          this.pageNumbers.push(this.books.length % BooksComponent.BOOKS_PER_PAGE - 1);
+        }
       },
       (err) => {
         console.log(err);
@@ -79,5 +96,18 @@ export class BooksComponent implements OnInit {
   showDialogForm() {
     this.IsSelected = false;
     this.IsDialog = true;    
+  }
+
+  changePage(page=null) {
+    if (page < 0) this.selectedPage = 0;
+    else if (page >= this.pageNumbers.length || page==null) this.selectedPage = this.pageNumbers.length - 1;
+         else this.selectedPage = page;
+
+    this.pageBooks = [];
+    for (var i=this.selectedPage*BooksComponent.BOOKS_PER_PAGE; 
+         i<this.books.length && i<(this.selectedPage+1)*BooksComponent.BOOKS_PER_PAGE; 
+         i++) {
+           this.pageBooks.push(this.books[i]);
+         }
   }
 }

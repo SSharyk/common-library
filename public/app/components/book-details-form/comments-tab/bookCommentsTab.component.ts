@@ -26,6 +26,7 @@ export class BookCommentsTabComponent implements OnInit {
   @Input()
   public book : BookModel;
   private comments: CommentModel[];
+  private MY_LOGIN: String;
 
   ngOnInit(){
   	this.loadComments();
@@ -40,6 +41,8 @@ export class BookCommentsTabComponent implements OnInit {
               private _commentService: CommentService,
               private _userService: UserService){
   	this.comments = [];
+    this.MY_LOGIN =  (localStorage.getItem("CURRENT_USER_KEY") != null)
+      ? JSON.parse(localStorage.getItem("CURRENT_USER_KEY"))["Login"] : "";  
   }
 
   loadComments(){

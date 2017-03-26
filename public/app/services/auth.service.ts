@@ -18,7 +18,7 @@ export class AuthService extends HttpHelpers {
 	private _getCurrentUserUrl: string = "auth/current/";
     private _isValidUrl: string = "auth/isValid";
 	private _loginUrl: string = "auth/login/{L}/{P}";
-    private _registerUrl: string = "auth/register/{L}/{P}/{E}";
+    private _registerUrl: string = "auth/register/{L}/{P}/{E}/{A}";
     private _logoutUrl: string = "auth/logout";
 
 	constructor(private http: Http) {
@@ -60,8 +60,13 @@ export class AuthService extends HttpHelpers {
         return this.getaction(this._loginUrl.replace("{L}", login).replace("{P}", password));
     }
 
-    register(login: string, password: string, email: string) {
-        return this.getaction(this._registerUrl.replace("{L}", login).replace("{P}", password).replace("{E}", email));
+    register(login: string, password: string, email: string, addresses) {
+        let url = this._registerUrl
+                    .replace("{L}", login)
+                    .replace("{P}", password)
+                    .replace("{E}", email)
+                    .replace("{A}", addresses);
+        return this.getaction(url);
     }
 
     logout() {

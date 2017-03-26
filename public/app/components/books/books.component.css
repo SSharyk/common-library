@@ -26,3 +26,19 @@ ul.categories-list {
 ul.categories-list > li {
 	font-size: 120%;
 }
+
+.pagination-container {
+	width: 100%;
+}
+.pagination-container td {
+	padding: 10px;
+	border: 1px solid #a34804;
+	font-weight: bold;
+	cursor: pointer;
+	opacity: 0.6;
+	text-align: center;
+}
+
+.pagination-container td:hover {
+	opacity: 1;
+}

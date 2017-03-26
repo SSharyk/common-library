@@ -31,7 +31,8 @@
 		<div class="col-md-1 book-info"> {{b?.Pages}} </div>
 
 		<div class="row message-container" *ngFor="let m of b.Messages" (click)="showDialogForm(b, m);">
-			<p> {{m.getLastMessageText()}} </p>
+			<p class="message-text"> {{m.getLastMessageText()}} </p>
+			<p class="message-author"> {{m.getLastMessageAuthor()}} </p>
 		</div>
 	</div>
 </div>
