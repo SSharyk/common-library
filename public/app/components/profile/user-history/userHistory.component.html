@@ -1,10 +1,12 @@
 <table>
     <thead>
+        <th class="column column-history-date"> Дата и время </th>
         <th class="column column-book-title"> Книга </th>
         <th class="column column-message"> Сообщение </th>
     </thead>
     <tbody>
         <tr *ngFor="let hItem of _history">
+            <td class="column column-history-date"> <p> {{hItem.Date}} </p> </td>
             <td class="column column-book-title"> <p> {{hItem.BookTitle}} </p> </td>
             <td class="column column-message"> <p> {{hItem.getMessage(MY_LOGIN)}} </p> </td>
         </tr>

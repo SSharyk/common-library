@@ -31,9 +31,13 @@ td.column p {
 }
 
 .column-book-title {
-    width: 35%;
+    width: 25%;
+}
+
+.column-history-date {
+    width: 25%;
 }
 
 .column-message {
-    width: 65%;
+    width: 50%;
 }

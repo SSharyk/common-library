@@ -27,9 +27,9 @@ export class HistoryModel{
 				? "Вы предложили книгу {B} пользователю {T}"
 				: "Пользователь {F} предложил Вам книгу {B}";
 		} else {
-			message = (this.FromUserLogin == currentUserLogin)
-				? "Вы подтвердили получение книги {B} от пользователя {T}"
-				: "Пользователь {F} подтвердил получение от Вас книги {B}";
+			message = (this.FromUserLogin != currentUserLogin)
+				? "Вы подтвердили получение книги {B} от пользователя {F}"
+				: "Пользователь {T} подтвердил получение от Вас книги {B}";
 		}
 
 		return message

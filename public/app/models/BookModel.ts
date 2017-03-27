@@ -27,6 +27,9 @@ export class BookModel{
 	}
 
 	private _pushMessagesToConversations(messages) {
+		if (messages == undefined || messages == null || messages.length == 0)
+			return;
+			
 		let currentUser = (localStorage.getItem("CURRENT_USER_KEY") != null)
 			? JSON.parse(localStorage.getItem("CURRENT_USER_KEY"))["Login"] : "";
 		for (var i=0; i<messages.length; i++) {

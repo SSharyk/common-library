@@ -23,7 +23,7 @@ export class BooksComponent implements OnInit {
   private IsDialog: Boolean;
   private SelectedBook: BookModel;
   private MY_LOGIN: string;
-  private static BOOKS_PER_PAGE: number = 10;
+  private static BOOKS_PER_PAGE: number = 12;
   private selectedPage: number;
   private pageNumbers: number[];
 
@@ -67,8 +67,10 @@ export class BooksComponent implements OnInit {
             this.books.length <= (this.selectedPage+1)*BooksComponent.BOOKS_PER_PAGE) {
               this.pageBooks.push(book);
             }
-        if (this.books.length - 1 % BooksComponent.BOOKS_PER_PAGE == 0) {
-          this.pageNumbers.push(this.books.length % BooksComponent.BOOKS_PER_PAGE - 1);
+        if ((this.books.length - 1) % BooksComponent.BOOKS_PER_PAGE == 0) {
+          let newPageNumber = (this.pageNumbers.length == 0) 
+              ? 0 : this.pageNumbers[this.pageNumbers.length - 1] + 1;
+          this.pageNumbers.push(newPageNumber);
         }
       },
       (err) => {
@@ -102,6 +104,7 @@ export class BooksComponent implements OnInit {
     if (page < 0) this.selectedPage = 0;
     else if (page >= this.pageNumbers.length || page==null) this.selectedPage = this.pageNumbers.length - 1;
          else this.selectedPage = page;
+    console.log(this.selectedPage);
 
     this.pageBooks = [];
     for (var i=this.selectedPage*BooksComponent.BOOKS_PER_PAGE; 
